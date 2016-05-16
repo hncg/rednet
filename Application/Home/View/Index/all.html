@@ -1,0 +1,44 @@
+<include file="Index/header" />
+<div id="carousel_container" class="carousel slide full_height">
+	<div id="nav-top">
+    	<div id="nav">
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+            	<li role="presentation">
+                	<a onclick="switchToTab('map')" data-toggle="tab">地图</a>
+                </li>
+                <li role="presentation">
+                	<a onclick="switchToTab('bar')" data-toggle="tab">柱状图</a>
+                </li>
+                <li role="presentation">
+               	 	<a onclick="switchToTab('line')" data-toggle="tab">月变化折线图</a>
+                </li>
+                <li role="presentation">
+                	<a onclick="switchToTab('jh')" data-toggle="tab">红网精帖</a>
+                </li>
+                <li role="presentation" id="forLineClick">
+                	<a onclick="switchToTab('detail')" data-toggle="tab">每日详情</a>
+                </li>
+                <li role="presentation" class="active">
+                	<a onclick="switchToTab('all')" data-toggle="tab">年变化折线图</a>
+                </li>
+                <li role="presentation">
+                	<a onclick="switchToTab('compare')" data-toggle="tab">实况预测对比</a>
+                </li>
+            </ul>
+       
+          
+        </div>
+    </div>
+	<div class="tab-content">
+		<div class="tab-pane fade in active">
+			<div class="main-slide">
+				<div class="splash">
+                	<div class="charts-main_all">
+						<include file="Index/charts:total_line" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Index/footer" />

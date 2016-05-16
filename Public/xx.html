@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<link rel="stylesheet" type="text/css" href="forecast.css" />
+    <script type="text/javascript" src="Js/echarts-plain-map.js"></script>
+    <script type="text/javascript" src="Js/esl.js"></script>
+</head>
+<body>
+	<div id="main">
+    	<div id="line"></div>
+	</div>
+    <script type="text/javascript">
+    var xList=eval(["2010.9.11","2012.11.14","2013.3.25","2013.4.14","2013.5.2","2013.6.26","2013.7.8","2013.8.27","2013.11.9","2013.12.20"]);
+	var yList=eval(["36","84","232","22.5","-239","365","-239","-50","81","373"]);
+    </script>
+    <script type="text/javascript">
+
+        // 路径配置
+
+        require.config({
+            paths:{
+                'echarts' : 'Js/echarts',
+                'echarts/chart/bar' : 'Js/echarts'
+            }
+        });
+		option = {
+			title : {
+				text: '',
+				subtext: ''
+			},
+			tooltip : {
+				trigger: 'axis'
+			},
+			legend: {
+				data:["cps"],
+			},
+			toolbox: {
+				show : true,
+				feature : {
+					magicType : {show: true, type: ['line', 'bar']},
+					restore : {show: true},
+					saveAsImage : {show: true}
+				}
+			},
+			calculable : false,
+			xAxis : [
+			{
+				type : 'category',
+				boundaryGap : false,
+				data : xList
+			}
+			],
+			yAxis : [
+			{
+				type : 'value',
+				axisLabel : {
+					formatter: '{value} '
+				},
+				splitArea : {show : true}
+			}
+			],
+			dataZoom : {
+					show : true,
+					realtime : true,
+					y: 460,
+					height: 20,
+					start : 0,
+					end : 100
+				},
+			series : [
+			{
+				name:"cps",
+				type:'line',
+				itemStyle: {
+					normal: {
+						lineStyle: {
+							color:'',
+							shadowColor : 'rgba(0,0,0,0.3)',
+							shadowBlur: 5,
+							shadowOffsetX: 3,
+							shadowOffsetY: 3
+						}
+					}
+				},
+				data:yList
+			}
+			]
+		};//end option
+		require([
+				'echarts',
+				'echarts/chart/line',
+				'echarts/chart/bar'
+				],
+				function (ec) {
+					myChart_line_main = ec.init(document.getElementById('line'));
+					myChart_line_main.setOption(option);
+				}
+		);
+
+    </script>
+</body>
+<html>

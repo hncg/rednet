@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	
+	<link type="text/css" rel="stylesheet" href="__CSS__admin/menu.css" />
+	
+	<script type="text/javascript" src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="__JS__admin/menu.js"></script>
+</head>
+<body style="margin:0px;padding:0px;">
+	<div id="left-menu">
+		<ul class="f-u">
+			<li class="y-u-l" onclick="menutoggle(this)"> <span class="minus"></span> 情感预测</li>
+				<ul class="e-u">
+					<li class="e-u-l"><a href="<!--{:U('Admin/Forecast/fore?m=1')}-->" target="main-frame">查看预测</a></li>
+		 			
+					<li class="e-u-l"><a href="<!--{:U('Admin/Forecast/fore?m=3')}-->" target="main-frame">预测对比</a></li>
+				</ul>
+			
+			
+			<li class="y-u-l" onclick="menutoggle(this)"> <span class="minus"></span> 会员管理</li>
+				<ul class="e-u">
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/member?m=1')}-->" target="main-frame">管理员管理</a></li>
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/member?m=2')}-->" target="main-frame">普通会员管理</a></li>
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/member?m=3')}-->" target="main-frame">修改信息</a></li>
+				</ul>
+			
+			<li class="y-u-l" onclick="menutoggle(this)"> <span class="minus"></span> 数据下载</li>
+				<ul class="e-u">
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/download?m=1')}-->" target="main-frame">数据下载</a></li>
+				</ul>
+			
+			<li class="y-u-l" onclick="menutoggle(this)"> <span class="minus"></span> 爬虫系统</li>
+				<ul class="e-u">
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/spider?m=1')}-->" target="main-frame">爬虫开关</a></li>
+				</ul>
+			
+			<li class="y-u-l" onclick="menutoggle(this)"> <span class="minus"></span> 站点记录</li>
+				<ul class="e-u">
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/record?m=1')}-->" target="main-frame">访客记录</a></li>
+					<li class="e-u-l"><a href="<!--{:U('Admin/Main/record?m=2')}-->" target="main-frame">下载记录</a></li>
+				</ul>
+			
+		</ul>
+	</div>
+</body>
+<html> 

@@ -1,0 +1,21 @@
+body{
+	margin:0px;
+	padding:0px;
+	width:850px;
+	height:550px;
+}
+div{
+	border:1px red solid;
+}
+#main{
+	width:750px;
+	height:500px;
+	margin-left:50px;
+	margin-top:50px;
+}
+#line{
+	width:720px;
+	height:440px;
+	margin-top:30px;
+	margin-left:15px;
+}

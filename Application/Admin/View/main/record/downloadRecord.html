@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<style type="text/css" rel="stylesheet">
+		
+		.main{
+			width:850px;
+		}
+		.clear{
+			clear:both;
+		}
+		.main table td{height:30px;border:1px #999 solid;color:#666;}
+		.main {margin:50px auto;}
+	</style>
+</head>
+<body>
+	
+	<div class="main">
+		<table border="1" cellspacing="0">
+			<tr>
+				<td align="center" width="80">编号</td>
+				<td align="center" width="100">account</td>
+				<td align="center" width="150">IP</td>
+				<td align="center" width="250">下载时间</td>
+				<td align="center" width="200">下载内容</td>
+			</tr>
+			<foreach name="recordlist" item="record">
+				<tr class="recordlist-tr">
+					<td align="center"><!--{$record["num"]}--></td>
+					<td align="center"><!--{$record["account"]}--></td>
+					<td align="center"><!--{$record["ip"]}--></td>
+					<td align="center"><!--{$record["time"]}--></td>
+					<td align="center"><!--{$record["download"]}--></td>
+				</tr>	
+			</foreach>
+		</table>
+		<div class="pagebot" style="width:350px;margin-top:10px;float:right;">
+			<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/downloadRecord","page=1")}-->' class="clickable"</neq>>首页</a>
+			<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/downloadRecord","page=".$pageInf["pre"])}-->' class="clickable"</neq>>上一页</a>
+			<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/downloadRecord","page=".$pageInf["next"])}-->' class="clickable"</neq>>下一页</a>
+			<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/downloadRecord","page=".$pageInf["last"])}-->' class="clickable"</neq>>尾页</a>
+			<a >共<!--{$pageNum}-->页</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+<html>

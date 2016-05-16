@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	
+</head>
+<body>
+	<table cellspacing="0" border="1">
+		<tr height="50">
+			<td align="center" width="100">映像名称</td>
+			<td align="center" width="100">PID</td>
+			<td align="center" width="150">会话名</td>
+			<td align="center" width="100">会话#</td>
+			<td align="center" width="125">内存使用</td>
+			<td align="center" width="125">开始时间</td>
+			<td align="center" width="125">现在时间</td>
+			<td align="center" width="125">持续时间</td>
+		</tr>
+		<tr height="50">
+			<notempty name="task">
+				<td align="center"><!--{$task["name"]}--></td>
+				<td align="center"><!--{$task["pid"]}--></td>
+				<td align="center"><!--{$task["spkname"]}--></td>
+				<td align="center"><!--{$task["spknum"]}--></td>
+				<td align="center"><!--{$task["memory"]}--></td>
+				<td align="center"><!--{$pre["starttimeYmd"]}--></td>
+				<td align="center"><!--{$pre["nowYmd"]}--></td>
+				<td align="center"><!--{$pre["lastTime"]}--></td>
+			<else />
+				<td align="center" colspan="8">网络蜘蛛暂未运行！</td>
+			</notempty>
+		</tr>
+		<tr height="50">
+			<td colspan="5" align="center">
+				<input type="button" value="重新运行" style="height:35px;" />
+			</td>
+			<td colspan="3" align="center">
+				<input type="button" value="结束网络蜘蛛" style="height:35px;" />
+			</td>
+		</tr>
+	</table>
+</body>
+<html>

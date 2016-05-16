@@ -1,0 +1,81 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据分析网用户登陆</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+
+    <link rel="shortcut icon" href="img/favicon.ico" />
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="__JS__bootstrap.min.js"></script>
+	<script type="text/javascript" src="__JS__index/index.js"></script>
+<style type="text/css" rel="stylesheet">
+
+html,body{padding:0px;margin:0px;height:100%;}
+
+#main{height:100%;width:1000px;margin:0 auto;position:relative;border:1px solid #c0c0c0;}
+#top{}
+#top a{text-decoration:none;}
+#form{width:430px;height:340px;position:absolute;left:10px;}
+.inp{width:300px;}	
+.lab{margin-top:50px;}
+#mid-main{position:absolute;top:30%;left:80px;width:840px;height:340px;border:1px solid #c0c0c0;border-radius:5px;}
+#mid-right{width:420px;height:340px;position:absolute;top:0px;right:0px;border-left:1px solid #c0c0c0;}
+</style>
+
+</head>
+<body>
+	<div id="main">
+		<div id="top">
+			<div class="well" style="padding:20px 250px;"><h1>嗨 ！欢迎您登陆我们的网站 ！</h1></div>
+		</div>
+		
+		<div id="mid-main">	
+			<div id="form">
+				<form class="form-horizontal" method="post" action="__HOME__Login/checkLogin" role="form">
+				  <div class="form-group lab">
+				    <label for="inputEmail3" class="col-sm-2 control-label">账号：</label>
+				    <div class="col-sm-10 inp">
+				      <input type="text" name="account" class="form-control" id="inputEmail3" placeholder="Account">
+				    </div>
+				  </div>
+				  <div class="form-group lab">
+				    <label for="inputPassword3" class="col-sm-2 control-label">密码：</label>
+				    <div class="col-sm-10 inp">
+				      <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group lab">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button type="submit" class="btn btn-default"> 登 陆 </button>
+				      <button type="reset"  class="btn btn-default" style="margin-left:100px;">重新输入</button>
+				    </div>
+				  </div>
+		
+				</form>
+			</div>
+			
+			<div id="mid-right" style="padding-left:12px;">
+				<h2>红网论坛情感数据分析网</h2>
+				<p style="font-size:1.2em;line-height:30px;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					红网论坛是湖南最大的网络互动平台，注册用户、在线人数与日发帖量均独占鳌头，是湖南人的网上情感家园、民意聚散地。
+					此系统可以帮助政府和企业以及个人实时了解社会舆情和人们的情感变化，对了解公民实时情感和阶段性的情感具有重要的参考价值。
+				</p>
+				&nbsp;&nbsp;&nbsp;<font style="font-size:1.5em;line-height:45px;">还没有账户 ？</font> 
+				<button type="button" onclick="window.location='__HOME__Login/register'" class="btn btn-default">马上注册</button>
+				<button type="button" onclick="window.location='__HOME__/Index/index'" class="btn btn-default">返回首页</button>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

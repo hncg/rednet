@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>红网网络情感监控网</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate">
+	<META HTTP-EQUIV="expires" CONTENT="0">
+
+	<link rel="shortcut icon" href="__IMG__/favicon.ico" />
+
+	<script type="text/javascript" 			src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" 			src="__JS__bootstrap.min.js"></script>
+	<script type="text/javascript" 			src="__JS__esl.js"></script>
+	<script type="text/javascript" 			src="__JS__echarts-plain-map.js"></script>
+	<script type="text/javascript" 			src="__JS__index/index.js"></script>
+	<script type="text/javascript" 			src="__JS__ajax.js"></script>
+
+    <link 	rel="stylesheet"				href="__CSS__bootstrap.min.css" 	>
+	<link 	rel="stylesheet"				href="__CSS__main_new.css" 		>
+
+	<script>
+		//var loginFlag = false;
+		//var loginHelper = null;
+		$(document).ready(function(){
+			 $(function () { $("[data-toggle='popover']").popover(); });
+			$('.carousel').carousel(
+				{
+					"pause":"false",
+					"interval":20000
+				}
+			);console.log(document.getElementById("forgetPassword"));
+			$('.carousel').on('slide.bs.carousel', function (event) {
+				var tag = $(event.relatedTarget).attr("tag");
+				var progress = $(event.relatedTarget).attr("progress");
+
+				$('#img_home').attr("src", "images/home.png");
+				$('#img_intro').attr("src", "images/intro.png");
+				$('#img_gift').attr("src", "images/gift.png");
+				$('#img_feedback').attr("src", "images/feedback.png");
+				$('#img_related').attr("src", "images/related.png");
+
+				$('#img_' + tag).attr("src", "images/" + tag + "_selected.png");
+
+				//$("#progress").width(progress + "px");
+				//$("#progress").css('left', (progress / 2) - 400 + "px");
+				$("#progress").animate({width: progress, left: (progress / 2) - 400}, 500);
+				playAnimation(tag);
+			});
+			playAnimation("home");
+		});
+
+		function switchPage(pageIndex){
+			$('.carousel').carousel(pageIndex);
+		}
+
+		function playAnimation(tag){
+			var ani1 = $("#page_" + tag + " .ani_step_1");
+			var ani2 = $("#page_" + tag + " .ani_step_2");
+			var ani3 = $("#page_" + tag + " .ani_step_3");
+			var pre_start = ((tag == "home") ? 0 : 300);
+			if(ani1 != null){
+				ani1.css("opacity", 0);
+				setTimeout(function(){
+					ani1.animate({opacity: 1}, 1000);
+				}, 10 + pre_start);
+			}
+			if(ani2 != null){
+				ani2.css("opacity", 0);
+				setTimeout(function(){
+					ani2.animate({opacity: 1}, 1000);
+				}, 1500 + pre_start);
+			}
+			if(ani3 != null){
+				ani3.css("opacity", 0);
+				setTimeout(function(){
+					$("#page_" + tag + " .ani_step_3").animate({opacity: 1}, 1000);
+				}, 3000 + pre_start);
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="header">
+	<div id="header-mid">
+		<empty name="Think.session.account">
+			<div id="tip1"><p>Tips：登陆即可下载当前页面数据</p></div>
+			<p style="font-size:1.6em;color:green;position:absolute;top:0px;left:310px;height:40px;line-height:40px;">
+				红网网络情感监控网
+			</p>
+		<else />
+			<p style="font-size:1.6em;color:green;position:absolute;top:0px;left:50px;height:40px;line-height:40px;">
+				红网网络情感监控网
+			</p>
+		</empty>
+		<div id="userModel" >
+			<notempty name="Think.session.account">
+				<div id="logined"><span style="font-size:1.2em;"><!--{$user.name}--></span>，您好！
+					<button onclick="window.location='__HOME__Login/logout'" type="button" class="btn btn-default" title="Tips"
+				      data-container="body" data-toggle="popover" data-placement="bottom"
+				      data-content="退出" data-trigger="hover">
+				      	退出登录
+				    </button>
+					<button onclick="download_data()" type="button" class="btn btn-default" title="Tips"
+				      data-container="body" data-toggle="popover" data-placement="bottom"
+				      data-content="注 :下载的数据包括 地图、柱状图、月变化折线图、每日详情 几个模块的数据(初始化页面时的数据)，年变化折线图暂不提供下载，有需要可联系我们！" data-trigger="hover">
+				      	下载首页数据
+				    </button>
+				</div>
+			<else />
+				<div id="unlogin">
+					<button type="button" class="btn btn-default btn-sm" onclick="window.location='__HOME__Login/login'">
+						<span class="glyphicon glyphicon-user" style="size:17px"></span> 登 陆
+					</button>
+					<button type="button" class="btn btn-default btn-sm" onclick="window.location='__HOME__Login/register'">
+						<span class="glyphicon glyphicon-hand-right"></span> 注 册
+					</button>
+					<button type="button" class="btn btn-default"
+				        data-placement="bottom" data-trigger="hover"
+				      data-toggle="modal" data-target="#myModal"
+				      >
+				      	忘记密码
+				    </button>
+
+
+
+				    	<!-- 模态框 -->
+					    <div  class="modal fade" id="myModal" tabindex="-1" role="dialog"
+   aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+						   <div class="modal-dialog">
+						      <div class="modal-content">
+						         <div class="modal-header">
+						            <button type="button" class="close"
+						               data-dismiss="modal" aria-hidden="true">
+						                  &times;
+						            </button>
+						            <h4 class="modal-title" id="myModalLabel">
+						              	验证邮箱更改新密码！
+						            </h4>
+						         </div>
+						         <div class="modal-body">
+									 <div style="width:550px;margin:15px auto;">
+									 	<div style="float:left;width:60px;">账号：</div>
+									 	<input onblur="FCheckAccount()" type="text" style="width:325px;float:left;" class="form-control" id="account" name="account" placeholder="请输入账号">
+									 	<div id="tipa" style="float:left;"></div>
+									 	<div style="clear:both;"></div>
+									 </div>
+									 <div style="width:550px;margin:15px auto;">
+									 	<div style="float:left;width:60px;">邮箱：</div>
+										<input onblur="FCheckEmail()" type="text" style="width:325px;float:left;" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+									 	<div id="tipe" style="float:left;"></div>
+									 	<div style="clear:both;"></div>
+									 </div>
+									 <div style="width:550px;margin:15px auto;">
+									 	<div style="float:left;width:60px;">验证码：</div>
+										<input type="text" style="width:175px;float:left;" class="form-control" id="checkCode" name="checkCode" placeholder="请输入验证码">
+									 	<button style="float:left;" onclick="getEmailCheckCode()" type="button" id="SendCheckCode" class="btn btn-primary">获取邮箱验证码</button>
+									 	<div id="tipc" style="float:left;"></div>
+									 	<div style="clear:both;"></div>
+									 </div>
+									 <div style="width:550px;margin:15px auto;">
+									 	<div style="float:left;width:60px;">新密码：</div>
+										<input type="text" style="width:325px;float:left;" class="form-control" id="password" name="password" placeholder="请输入新密码">
+									 	<div id="tipe" style="float:left;"></div>
+									 	<div style="clear:both;"></div>
+									 </div>
+						         </div>
+						         <div class="modal-footer">
+						            <button type="button" class="btn btn-default"
+						               data-dismiss="modal">关闭
+						            </button>
+						            <button type="button" class="btn btn-primary" onclick="setNewPsw()">
+						              	 提交更改
+						            </button>
+						         </div>
+						      </div><!-- /.modal-content -->
+						</div>
+					</div>
+					<!-- 模态框 -->
+
+				</div>
+			</notempty>
+		</div>
+	</div>
+</div>
+<div id="bg"></div>
+<div id="carousel_container" class="carousel slide full_height">
+	<div id="nav-top">
+    	<div id="nav">
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+            	<li role="presentation" class="active">
+                	<a href="#page_home" data-toggle="tab">地图</a>
+                </li>
+                <li role="presentation">
+                	<a href="#page_intro" data-toggle="tab">柱状图</a>
+                </li>
+                <li role="presentation">
+               	 	<a href="#page_gift" data-toggle="tab">月变化折线图</a>
+                </li>
+                <li role="presentation">
+                	<a href="#page_feedback" data-toggle="tab">红网精帖</a>
+                </li>
+                <li role="presentation" id="forLineClick">
+                	<a href="#page_related" data-toggle="tab">每日详情</a>
+                </li>
+                <li role="presentation">
+                	<a href="#page_feedback_add" data-toggle="tab">年变化折线图</a>
+                </li>
+                <li role="presentation">
+                	<a href="#page_compare" data-toggle="tab">实况预测对比</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="page_home">
+			<div class="main-slide">
+				<div class="splash">
+                	<div class="charts-main_map">
+						<include file="Index/charts:map" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="page_intro">
+			<div class="main-slide">
+				<div class="splash">
+                    <div class="charts-main_bar">
+                    	<include file="Index/charts:bar" />
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="page_gift">
+			<div class="main-slide">
+				<div class="splash">
+                    <div class="charts-main_line">
+						<include file="Index/charts:line" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="page_feedback">
+			<div class="main-slide">
+				<div class="splash">
+					<div class="charts-main_jh">
+						<include file="Index/charts:jh" />
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="tab-pane fade" id="page_related">
+			<div class="main-slide">
+				<div class="splash">
+					<div class="charts-main_detail">
+						<include file="Index/charts:detail" />
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="tab-pane fade" id="page_feedback_add">
+			<div class="main-slide">
+				<div class="splash">
+					<div class="charts-main_all">
+						<include file="Index/charts:total_line" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="page_compare">
+			<div class="main-slide">
+				<div class="splash">
+					<div class="charts-main_all">
+						<include file="Index/charts:compare" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<pre style="background:#e0e0e0;height:100px;"><div style="margin:0 auto;width:1000px;">
+						  红网网络情感监控网							      	Designed By ：	陈刚		郭佳伟	秦杰
+
+							指导老师：姜磊									联系我们：616142437@qq.com
+
+	</div></pre>
+</div>
+<script>var m = new DialogBox("missPsw");</script>
+</body>
+</html>

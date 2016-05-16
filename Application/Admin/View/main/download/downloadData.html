@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<script type="text/javascript" src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="__JS__admin/index.js"></script>
+	<script type="text/javascript" src="__PUBLIC__calendar/WdatePicker.js"></script>
+	
+	<style type="text/css" rel="stylesheet">
+		.timetb td{
+			height:50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<form>
+			<table class="timetb" cellspacing="0" border="0" style="margin:10% auto;">
+				<tr>
+					<td colspan="2" align="center">热词与热帖数据量太大，暂不提供下载！</td>
+				</tr>
+				<tr>
+					<td width="150" align="center">选择城市 : </td>
+					<td width="200">
+						<select name="city" id="city" onchange="refresh_line()" autocomplete="off">
+		                	<option value="0" selected="selected">所 有 城 市</option>
+							<option value="1">长 沙 市</option>
+		               	 	<option value="2" >株 洲 市</option>
+		                	<option value="3" >湘 潭 市</option>
+		               		<option value="4" >衡 阳 市</option>
+		               		<option value="5" >岳 阳 市</option>
+		               		<option value="6" >益 阳 市</option>
+		               		<option value="7" >常 德 市</option>
+		               		<option value="8" >邵 阳 市</option>
+		               		<option value="9" >娄 底 市</option>
+		               		<option value="10" >永 州 市</option>
+		               		<option value="11" >郴 州 市</option>
+		               		<option value="12" >怀 化 市</option>
+		               		<option value="13" >湘 西 州</option>
+		               		<option value="14" >张 家 界</option>
+	                	</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="150" align="center">开始日期 : </td>
+					<td width="200">
+						<input id="start" class="Wdate" type="text" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">结束日期 : </td>
+					<td>
+						<input id="end" class="Wdate" type="text" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="button" value="点击下载" onclick="downMoreData()">
+						<input type="reset" value="重置"/>
+					</td>
+					
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+<html>

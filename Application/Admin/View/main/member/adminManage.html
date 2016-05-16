@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	
+	<script type="text/javascript" src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="__JS__admin/index.js"></script>
+	<style type="text/css" rel="stylesheet">
+		#adminlistTable{
+			margin-top:50px;
+			min-width:970px;
+		}
+		#add-admin-model{
+			margin:50px auto 50px;
+			width:600px;
+			display:none;
+		}
+		#add-admin-model table td{
+			height:35px;
+		}
+		.clear{
+			clear:both;
+		}
+		#adminlistTable table td{height:30px;border:1px #999 solid;color:#666;}
+		#adminlistTable {margin:50px auto;}
+	</style>
+</head>
+<body>
+	<div class="main">	
+		<div id="adminlistTable">
+			<form>
+			<table border="1" cellspacing="0" >
+				<tr>
+					<td align="center" width="80">ID</td>
+					<td align="center" width="100">账号</td>
+					<td align="center" width="150">创建时间</td>
+					<td align="center" width="250">邮箱</td>
+					<td align="center" width="200">电话</td>
+					<td align="center" width="200">网名</td>
+					<td align="center" width="200">操作</td>
+					
+				</tr>
+				<foreach name="adminlist" item="admin">
+					<tr class="adminlist-tr">
+						<td align="center"><!--{$admin['ID']}--><input class="id" name="id" type="hidden" value="<!--{$admin['ID']}-->"/></td>
+						<td><input class="account" name="account" type="text" value="<!--{$admin['account']}-->"/></td>
+						<td align="center"><!--{$admin['time']}--></td>
+						<td><input class="email" name="email" type="text" value="<!--{$admin['email']}-->"/></td>
+						<td><input class="tel" name="tel" type="text" value="<!--{$admin['tel']}-->"/></td>
+						<td><input class="name" name="name" type="text" value="<!--{$admin['name']}-->"/></td>
+						<td align="center"> 
+							<a title="点击保存" href="javascript:void(0)" onclick="updataAdmin(this)">√</a> 
+							<a title="点击删除" href="javascript:void(0)" onclick="deleteAdmin(this)">×</a> 
+						</td>
+					</tr>	
+				</foreach>
+			</table>
+			</form>
+			<div class="pagebot" style="width:350px;margin-top:10px;float:right;">
+				<a href="javascript:void(0)" onclick="goAddAdmin()">增加管理员</a>
+				<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/adminManage","page=1")}-->' class="clickable"</neq>>首页</a>
+				<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/adminManage","page=".$pageInf["pre"])}-->' class="clickable"</neq>>上一页</a>
+				<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/adminManage","page=".$pageInf["next"])}-->' class="clickable"</neq>>下一页</a>
+				<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/adminManage","page=".$pageInf["last"])}-->' class="clickable"</neq>>尾页</a>
+				<a >共<!--{$pageNum}-->页</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="add-admin-model">
+			<form>
+			<table cellspacing="0" border="0">
+				<tr>
+					<td align="right" width="200">账号：</td>
+					<td align="left"  width="170">
+						<input onblur="checkact()" type="text" name="account" id="account" />
+					</td>
+					<td class="tip" width="150"></td>
+				</tr>
+				<tr>
+					<td align="right">密码：</td>
+					<td align="left">
+						<input onblur="checkpsw()" type="password" name="password" id="password" />
+					</td>
+					<td class="tip" id="pswtxt"></td>
+				</tr>
+				<tr>
+					<td align="right">确认密码：</td>
+					<td align="left">
+						<input onblur="checkpsw()" type="password" name="password2" id="password2" />
+					</td>
+					<td class="tip"></td>
+				</tr>
+				<tr>
+					<td align="right">手机号：</td>
+					<td align="left">
+						<input type="text" name="tel" id="tel" />
+					</td>
+					<td class="tip"></td>
+				</tr>
+				<tr>
+					<td align="right">email：</td>
+					<td align="left">
+						<input type="text" name="email" id="email" />
+					</td>
+					<td class="tip"></td>
+				</tr>
+				<tr>
+					<td align="right">网名：</td>
+					<td align="left">
+						<input type="text" name="name" id="name" />
+					</td>
+					<td class="tip"></td>
+				</tr>
+			</table>
+			<div style="width:320px;margin:10px auto;">
+				<input type="button" onclick="checkform()" value="确认添加"  />
+				<input type="reset" value="重置"  />
+				<input type="button" onclick="goBackList()" value="返回管理员列表"  />
+			</div>
+			</form>
+		</div>
+	</div>
+</body>
+<html>

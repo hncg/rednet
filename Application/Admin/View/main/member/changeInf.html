@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<script type="text/javascript" src="__JS__jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="__JS__admin/index.js"></script>
+	<style type="text/css" rel="stylesheet">
+		#change-admin-model{
+			margin:50px auto 50px;
+			width:800px;
+		}
+		#change-admin-model table td{
+			height:35px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="change-admin-model">
+		<form>
+			<table cellspacing="0" border="0">
+				<tr>
+					<td align="right" width="100">ID：</td>
+					<td align="left"  width="170">
+						<!--{$admin['ID']}-->
+						<input type="hidden" name="id" id="id" />
+					</td>
+					<td colspan="3" width="530" align="center">修改密码</td>
+				</tr>
+				<tr>
+					<td align="right">账号：</td>
+					<td align="left"  width="170">
+						<!--{$admin['account']}-->
+					</td>
+					<td align="right" width="200">旧密码：</td>
+					<td width="200" colspan="2"><input type="password" id="password0" name="password0" /></td>
+				</tr>
+				
+				<tr>
+					<td align="right">手机号：</td>
+					<td align="left">
+						<input type="text" name="tel" id="tel" value="<!--{$admin['tel']}-->" />
+					</td>
+					<td align="right">新密码：</td>
+					<td colspan="2"><input type="password" id="password" name="password" /></td>
+				</tr>
+				<tr>
+					<td align="right">email：</td>
+					<td align="left">
+						<input type="text" name="email" id="email" value="<!--{$admin['email']}-->" />
+					</td>
+					<td align="right">确认新密码：</td>
+					<td colspan="2"><input type="password" id="password1" name="password1" /></td>
+				</tr>
+				<tr>
+					<td align="right">网名：</td>
+					<td align="left">
+						<input type="text" name="name" id="name" value="<!--{$admin['name']}-->" />
+					</td>
+					<td align="right">验证码：</td>
+					<td><input style="width:90px;" type="text" id="checkcode" name="checkcode" /></td>
+					<td><img id="checkcodeimg" src="<!--{:U('Admin/Login/verify')}-->" onclick="refreshCheckCode()" /></td>
+				</tr>
+			</table>
+			<div style="width:800px;margin:10px auto;">
+				<input type="button" onclick="changeSelfInf()" value="确认更改" style="margin-left:100px;"  />
+				<input type="reset" value="重置所有" style="margin-left:120px;" />
+				<input type="button" onclick="changepsw()" value="更改密码" style="margin-left:100px;"  />
+			</div>
+		</form>
+	</div>
+</body>
+<html>

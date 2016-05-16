@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>红网情感数据监控网后台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<META HTTP-EQUIV="Cache-Control" CONTENT="no-store, must-revalidate"> 
+	<META HTTP-EQUIV="expires" CONTENT="0">
+	<style type="text/css" rel="stylesheet">
+		
+		#userlistTable table td{height:30px;border:1px #999 solid;color:#666;}
+		#userlistTable {margin:50px auto;}
+	</style>
+</head>
+<body>
+	
+	<div id="userlistTable" style="margin-top:50px;min-width:970px;">
+		<table border="1" cellspacing="0" >
+			<tr>
+				<td align="center" width="80">ID</td>
+				<td align="center" width="100">账号</td>
+				<td align="center" width="150">创建时间</td>
+				<td align="center" width="250">邮箱</td>
+				<td align="center" width="200">电话</td>
+				<td align="center" width="200">网名</td>
+				<td align="center" width="200">操作(暂无)</td>
+				
+			</tr>
+			<foreach name="userlist" item="user">
+				<tr class="userlist-tr">
+					<td align="center"><!--{$user['ID']}--><input class="id" name="id" type="hidden" value="<!--{$user['ID']}-->"/></td>
+					<td><input class="account" name="account" type="text" value="<!--{$user['account']}-->"/></td>
+					<td align="center"><!--{$user['time']}--></td>
+					<td><input class="email" name="email" type="text" value="<!--{$user['email']}-->"/></td>
+					<td><input class="tel" name="tel" type="text" value="<!--{$user['tel']}-->"/></td>
+					<td><input class="name" name="name" type="text" value="<!--{$user['name']}-->"/></td>
+					<td align="center"> 
+
+						
+					</td>
+				</tr>	
+			</foreach>
+		</table>
+		
+		<div class="pagebot" style="width:350px;margin-top:10px;float:right;">
+			<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/manage","page=1")}-->' class="clickable"</neq>>首页</a>
+			<a <neq name="pageInf['now']" value="1">href='<!--{:U("Admin/Main/manage","page=".$pageInf["pre"])}-->' class="clickable"</neq>>上一页</a>
+			<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/manage","page=".$pageInf["next"])}-->' class="clickable"</neq>>下一页</a>
+			<a <neq name="pageInf['now']" value="$pageInf['last']">href='<!--{:U("Admin/Main/manage","page=".$pageInf["last"])}-->' class="clickable"</neq>>尾页</a>
+			<a >共<!--{$pageNum}-->页</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+<html>
