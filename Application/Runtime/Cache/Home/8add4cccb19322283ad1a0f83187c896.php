@@ -185,7 +185,7 @@
 						<div id="opinion_list">
 						     <ul class="list-group" style="width:140px;">
 						        <li	<?php if(($opinion) == "cps"): ?>class="list-group-item selected-op"<?php else: ?>class="list-group-item"<?php endif; ?> >
-						        	<a href="<?php echo U('/Home/Index/map?opinion=synthesize');?>">		(总)Multiple		</a>
+						        	<a href="<?php echo U('/Home/Index/map?opinion=cps');?>">		(总)Multiple		</a>
 						        </li>
 						        <li	<?php if(($opinion) == "happy"): ?>class="list-group-item selected-op"<?php else: ?>class="list-group-item"<?php endif; ?> >
 						        	<a href="<?php echo U('/Home/Index/map?opinion=happy');?>">		(喜)Happy		</a>

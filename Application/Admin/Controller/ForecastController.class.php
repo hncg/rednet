@@ -132,16 +132,16 @@ class ForecastController extends Controller{
 		$y=(int)$date[0];$m=(int)$date[1];$d=(int)$date[2];
 
 		$flag=0;
-		if(M('forecast')->where(array('year'=>$y,'month'=>$m,'day'=>$d,'A_number'=>$c))->find()){
+		if(M('forecast')->where(array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c))->find()){
 			$flag=1;
 		}
 		$w=$this->getM($format,$c);$k=$this->getK($format,$c);
 		$t=$this->t;
 		$synthesize=$t*$w+(1-$t)*$k;
 
-		$data=array('year'=>$y,'month'=>$m,'day'=>$d,'A_number'=>$c,"cps"=>$synthesize);
+		$data=array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c,"cps"=>$synthesize);
 		if(!$flag)M("forecast")->data($data)->add();
-		else M("forecast")->where(array('year'=>$y,'month'=>$m,'day'=>$d,'A_number'=>$c))->save(array("cps"=>$synthesize));
+		else M("forecast")->where(array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c))->save(array("cps"=>$synthesize));
 		return $synthesize;
 	}
 	private function getM($formate,$c){//  月   日  城市
@@ -155,7 +155,7 @@ class ForecastController extends Controller{
 				'year'=>$i,
 				'month'=>$m,
 				'day'=>$d,
-				'A_number'=>$c
+				'city_id'=>$c
 			);
 			$data=$feel->where($condition)->find();
 			if($data){$num++;$w+=$data["cps"];}
@@ -176,7 +176,7 @@ class ForecastController extends Controller{
 					'year'=>$y,
 					'month'=>$m,
 					'day'=>$d,
-					'A_number'=>$c
+					'city_id'=>$c
 			);
 			$data=$feel->where($condition)->find();
 			if(!$data){

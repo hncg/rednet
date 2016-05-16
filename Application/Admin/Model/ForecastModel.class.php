@@ -32,7 +32,7 @@ class ForecastModel extends Model{
 
 			$y=(int)$date[0];$m=(int)$date[1];$d=(int)$date[2];
 			$temp=M("forecast")->field("cps")->where(array(
-				"year"=>$y,"month"=>$m,"day"=>$d,"A_number"=>$this->city
+				"year"=>$y,"month"=>$m,"day"=>$d,"city_id"=>$this->city
 			))->find();
 			$this->dayList[$i]=date("Y.m.d",$fm);
 			$this->dayData[$i]=$temp?$this->LgData($temp["cps"]):"-";
@@ -42,11 +42,11 @@ class ForecastModel extends Model{
 		$y=$this->year;$m=$this->month;$c=$this->city;
 		for($i=0;$i<getMonthDays($y, $m);$i++){
 			$temp=M("forecast")->field("cps")->where(array(
-				"A_number"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
+				"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();
 			$feel=M("feel");
 			$fect=$feel->field("cps")->where(array(
-				"A_number"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
+				"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();
 			$this->monthList[$i]=$y.".".$m.".".($i+1);
 			$this->monthData[$i]=$temp?$this->LgData($temp["cps"]):"-";

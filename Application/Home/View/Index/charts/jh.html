@@ -8,22 +8,22 @@
             <td width="170px">发帖时间</td>
         </tr>
     </table>
- <div style="border:1px solid #cdcdcd;">   
+ <div style="border:1px solid #cdcdcd;">
     <table class="body" style="margin-left:10px;" cellspacing="0" border="0">
-	
+
 	<!---FOREACH----->
 	<foreach name="jh" item="temp">
 		<tr class="jh-article-row">
 			<td class="ic" align="right"><a href="<!--{$temp.url}-->" title="置顶主题点击新窗口打开" target="__blank"><img src="__IMG__pin_3.gif" /></td>
 			<td class="ti"><a target="_blank" href="<!--{$temp.url}-->"><!--{$temp.title}--></a></td>
 			<td class="au"><!--{$temp.author}--></td>
-			<td class="re"><!--{$temp.replies}--></td>
-			<td class="tm"><!--{$temp.year}-->-<lt name="temp.month" value="10">0</lt><!--{$temp.month}-->-<lt name="temp.day" value="10">0</lt><!--{$temp.day}--></td>
+			<td class="re"><!--{$temp.reply_number}--></td>
+			<td class="tm"><!--{$temp.time_at}--></td>
 		</tr>
-	
+
     </foreach>
 	<!---END FOREACH----->
-	
+
     </table>
   </div>
 </div>

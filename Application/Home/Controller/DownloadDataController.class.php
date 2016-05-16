@@ -78,7 +78,7 @@ class DownloadDataController extends Controller{
 		fputcsv($fp, array('地图柱状图数据'));
 		fputcsv($fp, $temp);
 		for($i=1;$i<15;$i++){		/* 14个城市 */
-			$sql="select *from(select *from feel where A_number=".$i." order by year desc,month desc,day desc limit 0,7)as x order by x.year asc,x.month asc,x.day asc";
+			$sql="select *from(select *from mood where city_id=".$i." order by year desc,month desc,day desc limit 0,7)as x order by x.year asc,x.month asc,x.day asc";
 			$data=M('feel')->query($sql);
 			for($j=0;$j<7;$j++){					/* 最近一周共7天 */
 				if(empty($data[$j]))break;
@@ -87,7 +87,7 @@ class DownloadDataController extends Controller{
 				$d=$data[$j]['day'];	if($d<10)$d='0'.$d;
 				$arr=array(
 						$y.$m.$d,
-						$this->getcity($data[$j]['A_number']),
+						$this->getcity($data[$j]['city_id']),
 						$data[$j]['happy'],
 						$data[$j]['good'],
 						$data[$j]['anger'],
@@ -107,7 +107,7 @@ class DownloadDataController extends Controller{
 		/*****		折线图数据			*******/
 		fputcsv($fp, array('折线图数据'));
 		fputcsv($fp, $temp);
-		$sql="select *from (select * from feel where A_number=1 ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
+		$sql="select *from (select * from mood where city_id=1 ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
 		$data=M('feel')->query($sql);
 		for($j=0;$j<31;$j++){				/**		最近31天数据		**/
 			if(empty($data[$j]))break;
@@ -116,7 +116,7 @@ class DownloadDataController extends Controller{
 			$d=$data[$j]['day'];	if($d<10)$d='0'.$d;
 			$arr=array(
 					$y.$m.$d,
-					$this->getcity($data[$j]['A_number']),
+					$this->getcity($data[$j]['city_id']),
 					$data[$j]['happy'],
 					$data[$j]['good'],
 					$data[$j]['anger'],
@@ -135,7 +135,7 @@ class DownloadDataController extends Controller{
 		/******		红网精帖数据	*****/
 		fputcsv($fp, array('红网精帖','X 15'));
 		fputcsv($fp, $articleFirstLine);
-		$sql="select * from(select *from max_article where A_number=15 group by title,year,month,day,replies order by year desc,month desc,day desc limit 0,30)as x  order by x.replies desc limit 0,15";
+		$sql="select * from(select *from max_article where city_id=15 group by title,year,month,day,reply_number order by year desc,month desc,day desc limit 0,30)as x  order by x.reply_number desc limit 0,15";
 		$data=M('max_article')->query($sql);
 		for($i=0;$i<15;$i++){					/****		15个精帖		***/
 
@@ -145,11 +145,11 @@ class DownloadDataController extends Controller{
 			$d=$data[$i]['day'];	if($d<10)$d='0'.$d;
 			$arr=array(
 					$y.$m.$d,
-					$this->getcity($data[$i]['A_number']),
+					$this->getcity($data[$i]['city_id']),
 					$data[$i]['title'],
 					$data[$i]['author'],
 					$data[$i]['url'],
-					$data[$i]['replies']
+					$data[$i]['reply_number']
 			);
 			fputcsv($fp, $arr);
 		}
@@ -159,7 +159,7 @@ class DownloadDataController extends Controller{
 		fputcsv($fp, array('当天详情'));
 
 		/******		当日详情		********/
-		$sql="select *from feel where A_number=1 and year=".$date->year." and month=".$date->month." and day=".$date->day;
+		$sql="select *from mood where city_id=1 and year=".$date->year." and month=".$date->month." and day=".$date->day;
 		$data=M('feel')->query($sql);
 
 		fputcsv($fp, $temp);
@@ -168,7 +168,7 @@ class DownloadDataController extends Controller{
 		$d=$data[0]['day'];	if($d<10)$d='0'.$d;
 		$arr=array(
 				$y.$m.$d,
-				$this->getcity($data[0]['A_number']),
+				$this->getcity($data[0]['city_id']),
 				$data[0]['happy'],
 				$data[0]['good'],
 				$data[0]['anger'],
@@ -185,13 +185,13 @@ class DownloadDataController extends Controller{
 
 		/*** 	热词		*****/
 		fputcsv($fp, $wordFirstLine);
-		$sql="select *from max_words where A_number=1 and year=".$date->year." and month=".$date->month." and day=".$date->day." order by rate desc limit 0,15";
+		$sql="select *from hot_words where city_id=1 and year=".$date->year." and month=".$date->month." and day=".$date->day." order by rate desc limit 0,15";
 		$data=M('max_words')->query($sql);
 		for($i=0;$i<15;$i++){		/*****		15个热词	*****/
 			if(empty($data[$i]))break;
 			$arr=array(
 					$y.$m.$d,
-					$this->getcity($data[$i]['A_number']),
+					$this->getcity($data[$i]['city_id']),
 					$data[$i]['word'],
 					$data[$i]['rate']
 			);
@@ -202,7 +202,7 @@ class DownloadDataController extends Controller{
 
 		/******		当日帖子	*****/
 		fputcsv($fp, $articleFirstLine);
-		$sql="select * from max_article where A_number=1 and year=".$date->year." and month=".$date->month." and day=".$date->day."  group by title,year,month,day,replies order by replies desc limit 0,15";
+		$sql="select * from max_article where city_id=1 and year=".$date->year." and month=".$date->month." and day=".$date->day."  group by title,year,month,day,reply_number order by reply_number desc limit 0,15";
 		$data=M('max_article')->query($sql);
 		for($i=0;$i<15;$i++){					/****		15个帖子		***/
 
@@ -212,11 +212,11 @@ class DownloadDataController extends Controller{
 			$d=$data[$i]['day'];	if($d<10)$d='0'.$d;
 			$arr=array(
 					$y.$m.$d,
-					$this->getcity($data[$i]['A_number']),
+					$this->getcity($data[$i]['city_id']),
 					$data[$i]['title'],
 					$data[$i]['author'],
 					$data[$i]['url'],
-					$data[$i]['replies']
+					$data[$i]['reply_number']
 			);
 			fputcsv($fp, $arr);
 		}

@@ -18,17 +18,16 @@ class IndexController extends Controller {
      *
      */
     public function map(){
-
     	$this->recordInf();
     	$temp1=I("get.opinion");$temp2=I("session.opinion");
-        if($this->getOpinion($temp1)){$opinion=$temp1;$_SESSION["opinion"]=$opinion;}
+            if($this->getOpinion($temp1)){$opinion=$temp1;$_SESSION["opinion"]=$opinion;}
     	elseif($this->getOpinion($temp2)){$opinion=$temp2;$_SESSION["opinion"]=$opinion;}
     	else{$opinion="cps";$_SESSION["opinion"]=$opinion;}
 
     	$dateNow=new DateNow();
 		$feel=new FeelModel();
 		$feel->getWeekData($opinion);
-		/*********	    	数据		**************/
+        /*********	    	数据		**************/
     	$this->assign("weekData",json_encode($feel->weekData));
     	$this->assign("opinion",$opinion);
     	$this->assign("opinionZH",$this->getOpinion($opinion));
@@ -38,7 +37,7 @@ class IndexController extends Controller {
     	$this->assign("dateNow",$dateNow);
 
 		/*********	    	结束		**************/
-		$this->display();
+        $this->display();
     }
     public function bar(){
     	$this->recordInf();
@@ -64,7 +63,7 @@ class IndexController extends Controller {
     	$this->display();
     }
     public function line(){
-    	$this->recordInf();
+        $this->recordInf();
     	$dateNow=new DateNow();
 
     	$feel=new FeelModel();
@@ -92,10 +91,8 @@ class IndexController extends Controller {
     	$dateNow=new DateNow();
     	$articleWord	=	new ArticleWordModel();
     	$articleWord->getArticle();
-
     	/*********		精华帖子		**************/
-    	$this->assign("jh",$articleWord->article15);
-
+    	$this->assign("jh",$articleWord->article15 );
     	/*********		用户信息		**************/
     	$this->assign("user",M('user')->field('password',true)->where(array('account'=>I("SESSION.account")))->find());
     	$this->assign("dateNow",$dateNow);
@@ -255,8 +252,8 @@ class IndexController extends Controller {
     	for($i=0,$max=count($artWord->article);$i<$max;$i++){
     		$t_y=$artWord->article[$i]['year'];$t_m=$artWord->article[$i]['month'];$t_d=$artWord->article[$i]['day'];
     		if($t_m<10)$t_m='0'.$t_m;	if($t_d<10)$t_d='0'.$t_d;
-    		$str=$t_y.'-'.$t_m.'-'.$t_d;
-    		$article[$i]=array($artWord->article[$i]["title"],$artWord->article[$i]["url"],$artWord->article[$i]["replies"],$str);
+    		$str=$artWord->article[$i]['time_at'];
+    		$article[$i]=array($artWord->article[$i]["title"],$artWord->article[$i]["url"],$artWord->article[$i]["reply_number"],$str);
     	}
     	$word=array();
     	for($i=0;$i<10;$i++){

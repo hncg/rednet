@@ -171,12 +171,12 @@
     <div id="inf" style="position:absolute;width:200px;height:20px;top:35px;left:300px;color:red;font-size:1.1em;">
     </div>
     <div id="pie_right">		</div>
-   
+
     <div id="pie_title"><?php echo ($cityZH); ?> <?php echo ($detailDate->year); ?>年<?php echo ($detailDate->month); ?>月<?php echo ($detailDate->day); ?>日 情感调查数据详情</div>
     <div id="subtext">数据来自红网论坛</div>
-    
+
     <div id="hot_word"></div>
-    
+
     <div id="hot_article">
     	<div id="title_bar"><p>聚焦热帖</p></div>
     	<div id="ul_article">
@@ -187,53 +187,53 @@
 							<a target="_blank" href="<?php echo ($temp['url']); ?>" >
 								<?php echo ($temp['title']); ?>
 							</a>
-						</div> 
+						</div>
 						<div id="article_inf">
 							<div class="left">
-								回复数:<?php echo ($temp['replies']); ?>
+								回复数:<?php echo ($temp['reply_number']); ?>
 							</div>
 							<div class="right">
-								Time:<?php echo ($detailDate->year); ?>-<?php if(($detailDate->month) < "10"): ?>0<?php endif; echo ($detailDate->month); ?>-<?php if(($detailDate->day) < "10"): ?>0<?php endif; echo ($detailDate->day); ?>
+								    <?php echo ($temp['time_at']); ?>
 							</div>
 						</div>
 					</li><?php endforeach; endif; ?>
-				
+
             </ul>
         </div>
     </div>
-    
+
     <div id="detail_t">
     	<form>
         	<select name="pie_city" id="pie_city" onchange="refresh_detail()" autocomplete="off">
-            			<option value="1" <?php if(($city) == "1"): ?>selected="selected"<?php endif; ?>>长 沙 市</option>
+            			<option value="3" <?php if(($city) == "3"): ?>selected="selected"<?php endif; ?>>长 沙 市</option>
                         <option value="2" <?php if(($city) == "2"): ?>selected="selected"<?php endif; ?>>株 洲 市</option>
-                		<option value="3" <?php if(($city) == "3"): ?>selected="selected"<?php endif; ?>>湘 潭 市</option>
-               			<option value="4" <?php if(($city) == "4"): ?>selected="selected"<?php endif; ?>>衡 阳 市</option>
-               			<option value="5" <?php if(($city) == "5"): ?>selected="selected"<?php endif; ?>>岳 阳 市</option>
-               			<option value="6" <?php if(($city) == "6"): ?>selected="selected"<?php endif; ?>>益 阳 市</option>
-               			<option value="7" <?php if(($city) == "7"): ?>selected="selected"<?php endif; ?>>常 德 市</option>
-               			<option value="8" <?php if(($city) == "8"): ?>selected="selected"<?php endif; ?>>邵 阳 市</option>
-               			<option value="9" <?php if(($city) == "9"): ?>selected="selected"<?php endif; ?>>娄 底 市</option>
-               			<option value="10" <?php if(($city) == "10"): ?>selected="selected"<?php endif; ?>>永 州 市</option>
+                		<option value="7" <?php if(($city) == "7"): ?>selected="selected"<?php endif; ?>>湘 潭 市</option>
+               			<option value="5" <?php if(($city) == "5"): ?>selected="selected"<?php endif; ?>>衡 阳 市</option>
+               			<option value="10" <?php if(($city) == "10"): ?>selected="selected"<?php endif; ?>>岳 阳 市</option>
+               			<option value="4" <?php if(($city) == "4"): ?>selected="selected"<?php endif; ?>>益 阳 市</option>
+               			<option value="9" <?php if(($city) == "9"): ?>selected="selected"<?php endif; ?>>常 德 市</option>
+               			<option value="12" <?php if(($city) == "12"): ?>selected="selected"<?php endif; ?>>邵 阳 市</option>
+               			<option value="13" <?php if(($city) == "13"): ?>selected="selected"<?php endif; ?>>娄 底 市</option>
+               			<option value="8" <?php if(($city) == "8"): ?>selected="selected"<?php endif; ?>>永 州 市</option>
                			<option value="11" <?php if(($city) == "11"): ?>selected="selected"<?php endif; ?>>郴 州 市</option>
-               			<option value="12" <?php if(($city) == "12"): ?>selected="selected"<?php endif; ?>>怀 化 市</option>
-               			<option value="13" <?php if(($city) == "13"): ?>selected="selected"<?php endif; ?>>湘 西 州</option>
-               			<option value="14" <?php if(($city) == "14"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
+               			<option value="6" <?php if(($city) == "6"): ?>selected="selected"<?php endif; ?>>怀 化 市</option>
+               			<option value="14" <?php if(($city) == "14"): ?>selected="selected"<?php endif; ?>>湘 西 州</option>
+               			<option value="1" <?php if(($city) == "1"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
             </select>
         	<select name="pie_year" id="pie_year" onchange="change_day()" autocomplete="off">
-               <?php $__FOR_START_1228427555__=2012;$__FOR_END_1228427555__=2016;for($temp=$__FOR_START_1228427555__;$temp < $__FOR_END_1228427555__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->year): ?>selected="selected"<?php endif; ?> ><?php echo ($temp); ?> 年</option><?php } ?>          
+               <?php $__FOR_START_571397512__=2012;$__FOR_END_571397512__=2018;for($temp=$__FOR_START_571397512__;$temp < $__FOR_END_571397512__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->year): ?>selected="selected"<?php endif; ?> ><?php echo ($temp); ?> 年</option><?php } ?>
             </select>
             <select name="pie_month" id="pie_month" onchange="change_day()" autocomplete="off">
-            	<?php $__FOR_START_1500290134__=1;$__FOR_END_1500290134__=13;for($temp=$__FOR_START_1500290134__;$temp < $__FOR_END_1500290134__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>   
+            	<?php $__FOR_START_458504632__=1;$__FOR_END_458504632__=13;for($temp=$__FOR_START_458504632__;$temp < $__FOR_END_458504632__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>
             </select>
             <select name="pie_day" id="pie_day" onchange="refresh_detail()" autocomplete="off">
             	<option value='0'>选择日期</option>
-            	<?php $__FOR_START_194661622__=1;$__FOR_END_194661622__=$detailDate->dayNum+1;for($temp=$__FOR_START_194661622__;$temp < $__FOR_END_194661622__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->day): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 日</option><?php } ?>
+            	<?php $__FOR_START_1337510057__=1;$__FOR_END_1337510057__=$detailDate->dayNum+1;for($temp=$__FOR_START_1337510057__;$temp < $__FOR_END_1337510057__;$temp+=1){ ?><option value="<?php echo ($temp); ?>" <?php if(($temp) == $detailDate->day): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 日</option><?php } ?>
             </select>
         </form>
     </div>
-    
-    
+
+
 </div>
     <script type="text/javascript">
 		var hot_word	=	<?php echo ($wordData); ?>;
@@ -242,12 +242,12 @@
 		var myPie;
 		// 路径配置
         require.config({
-            paths:{ 
+            paths:{
                 'echarts' : '/Public/Js/echarts',
                 'echarts/chart/bar' : '/Public/Js/echarts'
             }
         });
-        
+
         // 使用
         require(
             [
@@ -256,7 +256,7 @@
             ],
         function(ec) {
         // 基于准备好的dom，初始化echarts图表
-        		myPie = echarts.init(document.getElementById('pie_main')); 
+        		myPie = echarts.init(document.getElementById('pie_main'));
 				var option = {
 					title : {
 					text: '',
@@ -280,7 +280,7 @@
 						restore : {show: true},
 						saveAsImage : {show: true},
 					}
-					
+
 				},
 				calculable : true,
 				series : [
@@ -300,22 +300,22 @@
 						]
 					}
 				]
-				};         
-			// 为echarts对象加载数据 
-			myPie.setOption(option); 
+				};
+			// 为echarts对象加载数据
+			myPie.setOption(option);
 		})
 		</script>
     <script type="text/javascript">
-		
+
 		var myPie_Bar;
 		// 路径配置
         require.config({
-            paths:{ 
+            paths:{
                 'echarts' : 'js/echarts',
                 'echarts/chart/bar' : 'js/echarts'
             }
         });
-        
+
         // 使用
         require(
             [
@@ -324,7 +324,7 @@
             ],
         function(ec) {
         // 基于准备好的dom，初始化echarts图表
-        		myPie_Bar = echarts.init(document.getElementById('pie_right')); 
+        		myPie_Bar = echarts.init(document.getElementById('pie_right'));
 				var option = {
 					title : {
 						text: '',
@@ -398,10 +398,10 @@
 									color:['rgba(144,238,144,0.3)','rgba(135,200,250,0.3)']
 								}
 							},
-							
+
 							data : ['乐','好','怒','哀','惧','恶','惊']
 						}
-						
+
 					],
 					yAxis : [
 						{
@@ -426,26 +426,26 @@
 									}
 								}
 							},
-							data:[pie_data[0],pie_data[1],pie_data[2],pie_data[3],pie_data[4],pie_data[5],pie_data[6]]	
+							data:[pie_data[0],pie_data[1],pie_data[2],pie_data[3],pie_data[4],pie_data[5],pie_data[6]]
 						},
-						
+
 					]
 				};
-			// 为echarts对象加载数据 
-			myPie_Bar.setOption(option); 
+			// 为echarts对象加载数据
+			myPie_Bar.setOption(option);
 		})
 		</script>
     <script type="text/javascript">
-		
+
 		var hotWord;
 		// 路径配置
         require.config({
-            paths:{ 
+            paths:{
                 'echarts' : 'js/echarts',
                 'echarts/chart/bar' : 'js/echarts'
             }
         });
-        
+
         // 使用
         require(
             [
@@ -454,7 +454,7 @@
             ],
         function(ec) {
         // 基于准备好的dom，初始化echarts图表
-        		myChart_hotWord = echarts.init(document.getElementById('hot_word')); 
+        		myChart_hotWord = echarts.init(document.getElementById('hot_word'));
 				var option = {
 					title : {
 						text: '当天热词',
@@ -547,7 +547,7 @@
 								{source : hot_word[7], target : '热词', weight : 1},
 								{source : hot_word[8], target : '热词', weight : 1},
 								{source : hot_word[9], target : '热词', weight : 1},
-								
+
 								{source : hot_word[3], target : hot_word[0], weight : 1},
 								{source : hot_word[4], target : hot_word[0], weight : 1},
 								{source : hot_word[5], target : hot_word[0], weight : 1},
@@ -558,7 +558,7 @@
 							]
 						}
 					]
-				}; 
+				};
 				var ecConfig = require('echarts/config');
 				function focusx(param) {
 					var data = param.data;
@@ -576,9 +576,9 @@
 					}
 					console.log(param);
 				}
-				myChart_hotWord.on(ecConfig.EVENT.CLICK, focusx)     ;  
-			// 为echarts对象加载数据 
-			myChart_hotWord.setOption(option); 
+				myChart_hotWord.on(ecConfig.EVENT.CLICK, focusx)     ;
+			// 为echarts对象加载数据
+			myChart_hotWord.setOption(option);
 		})
 		</script>
 					</div>

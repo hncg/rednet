@@ -144,54 +144,171 @@
                 <li role="presentation">
                	 	<a onclick="switchToTab('line')" data-toggle="tab">月变化折线图</a>
                 </li>
-                <li role="presentation" class="active">
+                <li role="presentation">
                 	<a onclick="switchToTab('jh')" data-toggle="tab">红网精帖</a>
                 </li>
                 <li role="presentation" id="forLineClick">
                 	<a onclick="switchToTab('detail')" data-toggle="tab">每日详情</a>
                 </li>
-                <li role="presentation">
+                <li role="presentation" class="active">
                 	<a onclick="switchToTab('all')" data-toggle="tab">年变化折线图</a>
                 </li>
                 <li role="presentation">
                 	<a onclick="switchToTab('compare')" data-toggle="tab">实况预测对比</a>
                 </li>
             </ul>
-
-
+       
+          
         </div>
     </div>
 	<div class="tab-content">
 		<div class="tab-pane fade in active">
 			<div class="main-slide">
 				<div class="splash">
-                	<div class="charts-main_jh">
-						<div id="jh">
-    <table class="th" border="0" cellspacing="0" bordercolor="#cdcdcd">
-    	<tr style="background-color:#f2f2f2;height:35px;">
-        	<td width="50px"></td>
-        	<td width="500px">标题</td>
-            <td width="150px">作者</td>
-            <td width="140px">回复数</td>
-            <td width="170px">发帖时间</td>
-        </tr>
-    </table>
- <div style="border:1px solid #cdcdcd;">
-    <table class="body" style="margin-left:10px;" cellspacing="0" border="0">
-
-	<!---FOREACH----->
-	<?php if(is_array($jh)): foreach($jh as $key=>$temp): ?><tr class="jh-article-row">
-			<td class="ic" align="right"><a href="<?php echo ($temp["url"]); ?>" title="置顶主题点击新窗口打开" target="__blank"><img src="/Public/Img/pin_3.gif" /></td>
-			<td class="ti"><a target="_blank" href="<?php echo ($temp["url"]); ?>"><?php echo ($temp["title"]); ?></a></td>
-			<td class="au"><?php echo ($temp["author"]); ?></td>
-			<td class="re"><?php echo ($temp["reply_number"]); ?></td>
-			<td class="tm"><?php echo ($temp["time_at"]); ?></td>
-		</tr><?php endforeach; endif; ?>
-	<!---END FOREACH----->
-
-    </table>
-  </div>
+                	<div class="charts-main_all">
+						<div id="all_line_main">
+  <div style="height:100px;width:1000px;margin:0 auto;position:relative;">
+        <h2 style="width:520px;margin:35px auto 35px;">
+            <span id="city"><?php echo ($cityZH); ?></span>&nbsp;&nbsp;近年红网情感 ( <span id="opinion"><?php echo ($opinionZH); ?></span> ) 变化
+        </h2>
+        <div style="width:800px;position:absolute;left:150px;top:60px;">
+        	<p style="font-size:90%;width:800px;">图表下方横向 拉条 可调整大小，缩小拉条长度可并拉动到某一位置可将该图该区域放大。图表右上角还有其他<span style="color:red;font-size:1.1em;">工具</span>，<span style="color:red;font-size:1.1em;">详情点击</span>		——>
+            </p>
+        </div>
+        <div style="position:absolute;top:100px;left:150px; width:300px;z-index:1000;">
+        	<form>
+        		<select name="all_city" id="all_city" onChange="showLineAllT()" autocomplete="off">
+                    <option value="3" <?php if(($city) == "3"): ?>selected="selected"<?php endif; ?>>长 沙 市</option>
+                    <option value="2" <?php if(($city) == "2"): ?>selected="selected"<?php endif; ?>>株 洲 市</option>
+                    <option value="7" <?php if(($city) == "7"): ?>selected="selected"<?php endif; ?>>湘 潭 市</option>
+                    <option value="5" <?php if(($city) == "5"): ?>selected="selected"<?php endif; ?>>衡 阳 市</option>
+                    <option value="10" <?php if(($city) == "10"): ?>selected="selected"<?php endif; ?>>岳 阳 市</option>
+                    <option value="4" <?php if(($city) == "4"): ?>selected="selected"<?php endif; ?>>益 阳 市</option>
+                    <option value="9" <?php if(($city) == "9"): ?>selected="selected"<?php endif; ?>>常 德 市</option>
+                    <option value="12" <?php if(($city) == "12"): ?>selected="selected"<?php endif; ?>>邵 阳 市</option>
+                    <option value="13" <?php if(($city) == "13"): ?>selected="selected"<?php endif; ?>>娄 底 市</option>
+                    <option value="8" <?php if(($city) == "8"): ?>selected="selected"<?php endif; ?>>永 州 市</option>
+                    <option value="11" <?php if(($city) == "11"): ?>selected="selected"<?php endif; ?>>郴 州 市</option>
+                    <option value="6" <?php if(($city) == "6"): ?>selected="selected"<?php endif; ?>>怀 化 市</option>
+                    <option value="14" <?php if(($city) == "14"): ?>selected="selected"<?php endif; ?>>湘 西 州</option>
+                    <option value="1" <?php if(($city) == "1"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
+            	</select>
+                <select name="all_opinion" id="all_opinion" onChange="showLineAllT()" autocomplete="off">
+                	<option value="cps" <?php if(($opinion) == "cps"): ?>selected="selected"<?php endif; ?>>	总 synthesize	</option>
+                    <option value="happy" <?php if(($opinion) == "happy"): ?>selected="selected"<?php endif; ?>>		喜 Happy			</option>
+                    <option value="good" <?php if(($opinion) == "good"): ?>selected="selected"<?php endif; ?>>		好 Good			</option>
+                    <option value="anger" <?php if(($opinion) == "anger"): ?>selected="selected"<?php endif; ?>>		怒 Anger			</option>
+                    <option value="sorrow" <?php if(($opinion) == "sorrow"): ?>selected="selected"<?php endif; ?>>		哀 Sorrow		</option>
+                    <option value="fear" <?php if(($opinion) == "fear"): ?>selected="selected"<?php endif; ?>>		惧 Fear			</option>
+                    <option value="evil" <?php if(($opinion) == "evil"): ?>selected="selected"<?php endif; ?>>		恶 Evil			</option>
+                    <option value="surprise" <?php if(($opinion) == "surprise"): ?>selected="selected"<?php endif; ?>>	惊 Surprise		</option>
+                </select>
+        	</form>
+        </div>
+    </div>
+    <div id="all-line" style="height:500px; width:1000px;margin:0 auto;"></div>
 </div>
+	<script type="text/javascript">
+    var xList=<?php echo ($allList); ?> ;
+	var yList=<?php echo ($allLineData); ?>;
+    </script>
+    <script type="text/javascript">
+
+        // 路径配置
+        require.config({
+            paths:{
+                'echarts' : '/Public/Js/echarts',
+                'echarts/chart/bar' : '/Public/Js/echarts'
+            }
+        });
+
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+				myChart_line_main = ec.init(document.getElementById('all-line'));
+				option_line = {
+					title : {
+						text: '',
+						subtext: ''
+					},
+					tooltip : {
+						trigger: 'axis'
+					},
+					legend: {
+						data:["cps"],
+					},
+					toolbox: {
+						show : true,
+						x:705,
+						feature : {
+							mark : {show: true},
+							dataZoom : {show: true},
+							dataView : {show: false,readOnly:true},
+							magicType : {show: true, type: ['line', 'bar']},
+							restore : {show: true},
+							saveAsImage : {show: true}
+						}
+					},
+					calculable : false,
+					xAxis : [
+					{
+						type : 'category',
+						boundaryGap : false,
+						data : xList
+					}
+					],
+					yAxis : [
+					{
+						type : 'value',
+						axisLabel : {
+							formatter: '{value} '
+						},
+						splitArea : {show : true}
+					}
+					],
+					dataZoom : {
+							show : true,
+							realtime : true,
+							//x: 0,
+							y: 460,
+							//width: 400,
+							height: 20,
+							//backgroundColor: 'rgba(221,160,221,0.5)',
+							//dataBackgroundColor: 'rgba(138,43,226,0.5)',
+							//fillerColor: 'rgba(38,143,26,0.6)',
+							//handleColor: 'rgba(128,43,16,0.8)',
+							//xAxisIndex:[],
+							//yAxisIndex:[],
+							start : 0,
+							end : 100
+						},
+					series : [
+					{
+						name:"cps",
+						type:'line',
+						itemStyle: {
+							normal: {
+								lineStyle: {
+									color:'',
+									shadowColor : 'rgba(0,0,0,0.3)',
+									shadowBlur: 5,
+									shadowOffsetX: 3,
+									shadowOffsetY: 3
+								}
+							}
+						},
+						data:yList,
+					}
+					]
+				};//end option
+			myChart_line_main.setOption(option_line);
+            }//end function
+        );
+    </script>
 					</div>
 				</div>
 			</div>

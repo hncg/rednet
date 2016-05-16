@@ -188,10 +188,10 @@
                		<option value="14" <?php if(($cym['ci']) == "14"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
 				</select>
 				<select name="ye" class="ye">
-					<?php $__FOR_START_1085761134__=2012;$__FOR_END_1085761134__=$cym['nowyear']+1;for($temp=$__FOR_START_1085761134__;$temp < $__FOR_END_1085761134__;$temp+=1){ ?><option <?php if(($temp) == $cym['year']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>"><?php echo ($temp); ?>年</option><?php } ?>
+					<?php $__FOR_START_1820081047__=2012;$__FOR_END_1820081047__=$cym['nowyear']+1;for($temp=$__FOR_START_1820081047__;$temp < $__FOR_END_1820081047__;$temp+=1){ ?><option <?php if(($temp) == $cym['year']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>"><?php echo ($temp); ?>年</option><?php } ?>
 				</select>
 				<select name="mo" class="mo">
-        			<?php $__FOR_START_1853556346__=1;$__FOR_END_1853556346__=13;for($temp=$__FOR_START_1853556346__;$temp < $__FOR_END_1853556346__;$temp+=1){ ?><option <?php if(($temp) == $cym['month']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>" <?php if(($temp) == $dateNow->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>
+        			<?php $__FOR_START_941262673__=1;$__FOR_END_941262673__=13;for($temp=$__FOR_START_941262673__;$temp < $__FOR_END_941262673__;$temp+=1){ ?><option <?php if(($temp) == $cym['month']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>" <?php if(($temp) == $dateNow->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>
         		</select>
         		<button onclick="lookCompare()" style="margin-left:20px;">查看</button>
         		<button onclick="lookCompareFore()" style="margin-left:50px;">将来30天预测</button>

@@ -359,10 +359,10 @@ class MainController extends Controller{
 
 		/****		获取feel表数据	****/
 		if($city==0){
-			$sql="select *from feel where year>=".$start[0]." and year<=".$end[0]." order by year asc,month asc,day asc,A_number asc";
+			$sql="select *from mood where year>=".$start[0]." and year<=".$end[0]." order by year asc,month asc,day asc,city_id asc";
 
 		}else{
-			$sql="select *from feel where A_number=".$city." and year>=".$start[0]."and year<=".$end[0]." order year asc,month asc,day asc";
+			$sql="select *from mood where city_id=".$city." and year>=".$start[0]."and year<=".$end[0]." order year asc,month asc,day asc";
 		}
 		$temps=M("feel")->query($sql);
 		for($i=0,$j=0;$i<count($temps);$i++){
@@ -375,7 +375,7 @@ class MainController extends Controller{
 		}
 		/****		获取  精帖  表数据	****/
 
-		$sql="select *from max_article where A_number=15 and year>=".$start[0]." and year<=".$end[0]." order by year asc,month asc,day asc";
+		$sql="select *from max_article where city_id=15 and year>=".$start[0]." and year<=".$end[0]." order by year asc,month asc,day asc";
 		$temps=M("max_article")->query($sql);
 		for($i=0,$j=0;$i<count($temps);$i++){
 			$str=(int)$temps[$i]['year'].($temps[$i]['month']<10?'0'.$temps[$i]['month']:$temps[$i]['month']).($temps[$i]['day']<10?'0'.$temps[$i]['day']:$temps[$i]['day']);
@@ -426,7 +426,7 @@ class MainController extends Controller{
 			$d=$data['feel'][$i]['day'];	if($d<10)$d='0'.$d;
 			$arr=array(
 					$y.$m.$d,
-					$data['city'][$data['feel'][$i]['A_number']],
+					$data['city'][$data['feel'][$i]['city_id']],
 					$data['feel'][$i]['happy'],
 					$data['feel'][$i]['good'],
 					$data['feel'][$i]['anger'],
@@ -452,11 +452,11 @@ class MainController extends Controller{
 			$d=$data['jh'][$i]['day'];	if($d<10)$d='0'.$d;
 			$arr=array(
 					$y.$m.$d,
-					$data['city'][$data['jh'][$i]['A_number']],
+					$data['city'][$data['jh'][$i]['city_id']],
 					$data['jh'][$i]['title'],
 					$data['jh'][$i]['author'],
 					$data['jh'][$i]['url'],
-					$data['jh'][$i]['replies']
+					$data['jh'][$i]['reply_number']
 			);
 			fputcsv($fp, $arr);
 		}

@@ -52,7 +52,7 @@ class FeelModel extends Model{
 	/*************    获取某种情绪所有数据       ******************/
 	public function getAllData($opinion="cps"){
 
-		$sql="select * from feel where A_number=".$this->city." order by year asc,month asc,day asc";
+		$sql="select * from mood where city_id=".$this->city." order by year asc,month asc,day asc";
 		$this->manageAllData($this->query($sql), $opinion);
 	}
 
@@ -60,11 +60,10 @@ class FeelModel extends Model{
 	public function getMonthData(){
 		$y=$this->year;$m=$this->month;$d=$this->day;
 		//echo $y.$y.$d;//and year!=".$y."and month!=".$m."and day!=".$d."
-
 		if(!$this->start){
-			$sql="select *from (select *from feel where A_number=".$this->city." and year=".$this->year." and month=".$this->month." ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
+			$sql="select *from (select *from mood where city_id=".$this->city." and year=".$this->year." and month=".$this->month." ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
 		}else{
-			$sql="select *from (select * from feel where A_number=".$this->city."  ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
+			$sql="select *from (select * from mood where city_id=".$this->city."  ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
 		}
 		$this->manageMonthData($this->query($sql));
 	}
@@ -82,7 +81,7 @@ class FeelModel extends Model{
 	/*************    获取某一天数据        ******************/
 	public function getDayData(){
 
-		$sql="select *from feel where A_number=".$this->city." and year=".$this->year." and month=".$this->month." and day=".$this->day;
+		$sql="select *from mood where city_id=".$this->city." and year=".$this->year." and month=".$this->month." and day=".$this->day;
 		$this->manageDayData($this->query($sql));
 	}
 
@@ -195,7 +194,7 @@ class FeelModel extends Model{
 
 		if(isset($arr)){$this->dayData=$arr[0];}
 		else{
-			$this->dayData=array("happy"=>"0","good"=>"0","anger"=>"0","sorrow"=>"0","fear"=>"0","evil"=>"0","surprise"=>"0","total_strong"=>"0","max_strong"=>"0","year"=>"-","month"=>"-","day"=>"-","A_number"=>"-","cps"=>"0");
+			$this->dayData=array("happy"=>"0","good"=>"0","anger"=>"0","sorrow"=>"0","fear"=>"0","evil"=>"0","surprise"=>"0","total_strong"=>"0","max_strong"=>"0","year"=>"-","month"=>"-","day"=>"-","city_id"=>"-","cps"=>"0");
 		}
 	}
 
