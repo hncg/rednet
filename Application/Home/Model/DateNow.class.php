@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Home\Model;
 
 class DateNow{
@@ -6,7 +6,7 @@ class DateNow{
 	public $month;
 	public $day;
 	public $dayNum;
-	
+
 	public function __construct($y=0,$m=0,$d=0){
 		if($y!=0){
 			$this->year=$y;
@@ -19,8 +19,8 @@ class DateNow{
 			$this->year		=	(int)$date[0][0];
 			$this->month	=	(int)$date[0][1];
 			$this->day		=	(int)$date[0][2];
-				
-			$this->year=2015;$this->month=3;$this->day=22;
+
+			$this->year=2016;$this->month=5;$this->day=11;
 			$this->getDayNum();
 		}
 	}

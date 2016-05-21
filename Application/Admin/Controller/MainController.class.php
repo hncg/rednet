@@ -3,7 +3,7 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Admin\Model\AdminModel;
-use Home\Model\FeelModel;
+use Home\Model\MoodModel;
 
 class MainController extends Controller{
 
@@ -364,7 +364,7 @@ class MainController extends Controller{
 		}else{
 			$sql="select *from mood where city_id=".$city." and year>=".$start[0]."and year<=".$end[0]." order year asc,month asc,day asc";
 		}
-		$temps=M("feel")->query($sql);
+		$temps=M("mood")->query($sql);
 		for($i=0,$j=0;$i<count($temps);$i++){
 			$str=(int)$temps[$i]['year'].($temps[$i]['month']<10?'0'.$temps[$i]['month']:$temps[$i]['month']).($temps[$i]['day']<10?'0'.$temps[$i]['day']:$temps[$i]['day']);
 			if($str>$end_str)break;

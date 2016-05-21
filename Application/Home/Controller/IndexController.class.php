@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 use Think\Upload;
-use Home\Model\FeelModel;
+use Home\Model\MoodModel;
 use Home\Model\ArticleWordModel;
 use Home\Model\DateNow;
 use Home\Model\UserModel;
@@ -25,7 +25,7 @@ class IndexController extends Controller {
     	else{$opinion="cps";$_SESSION["opinion"]=$opinion;}
 
     	$dateNow=new DateNow();
-		$feel=new FeelModel();
+		$feel=new MoodModel();
 		$feel->getWeekData($opinion);
         /*********	    	数据		**************/
     	$this->assign("weekData",json_encode($feel->weekData));
@@ -48,7 +48,7 @@ class IndexController extends Controller {
     	else{$opinion="cps";$_SESSION["opinion"]=$opinion;}
 
     	$dateNow=new DateNow();
-    	$feel=new FeelModel();
+    	$feel=new MoodModel();
     	$feel->getWeekData($opinion);
     	/*********	    	数据		**************/
     	$this->assign("weekData",json_encode($feel->weekData));
@@ -66,7 +66,7 @@ class IndexController extends Controller {
         $this->recordInf();
     	$dateNow=new DateNow();
 
-    	$feel=new FeelModel();
+    	$feel=new MoodModel();
     	$feel->getMonthData();
     	/*********	    	数据		**************/
     	$this->assign("line_x",json_encode($feel->monthList));
@@ -96,6 +96,8 @@ class IndexController extends Controller {
     	/*********		用户信息		**************/
     	$this->assign("user",M('user')->field('password',true)->where(array('account'=>I("SESSION.account")))->find());
     	$this->assign("dateNow",$dateNow);
+
+       // dump($articleWord->article15);
 
     	/*********	    	结束		**************/
     	$this->display();
@@ -154,7 +156,7 @@ class IndexController extends Controller {
     		}
     	}
 
-    	$feel	=	new FeelModel($city);
+    	$feel	=	new MoodModel($city);
     	$feel->getAllData($opinion);
     	$dateNow=new DateNow();
 
@@ -173,12 +175,12 @@ class IndexController extends Controller {
     	$this->display();
     }
     public function compare(){
-    	if(I("get.fore","")>0&&I("get.fore","")<15){
+        if(I("get.fore","")>0&&I("get.fore","")<15){
     		session("comcity",null);session("comyear",null);session("commonth",null);
     	}
     	$this->recordInf();$flag=1;
     	if(I("get.city")&&I("get.year")&&I("get.month")){
-    		$_SESSION["comcity"]	=	I("get.city");	$city	=I("get.city");
+        	$_SESSION["comcity"]	=	I("get.city");	$city	=I("get.city");
     		$_SESSION["comyear"]	=	I("get.year");	$year	=I("get.year");
     		$_SESSION["commonth"]	=	I("get.month");	$month	=I("get.month");
     	}elseif($_SESSION["comcity"]){
@@ -202,7 +204,7 @@ class IndexController extends Controller {
     	$this->assign("monthList",json_encode($forecast->monthList));
     	$this->assign("monthData",json_encode($forecast->monthData));
     	$this->assign("fectData", json_encode($forecast->fectData));
-
+        $this->assign("city", $city);
     	$this->display();
     }
     /*
@@ -216,15 +218,8 @@ class IndexController extends Controller {
     	$m=I("POST.m");
     	if(empty($c)||empty($y)||empty($m)){$this->error("页面错误！",U("Home/Index/index"),2);}
 
-    	$feel=new FeelModel($c,$y,$m,'',false);$feel->getMonthData();
-    	switch($c)
-		{
-			case '1' : $cname="长沙市";break;case '2' : $cname="株洲市";break;case '3' : $cname="湘潭市";break;
-			case '4' : $cname="衡阳市";break;case '5' : $cname="岳阳市";break;case '6' : $cname="益阳市";break;
-			case '7' : $cname="常德市";break;case '8' : $cname="邵阳市";break;case '9' : $cname="娄底市";break;
-			case '10': $cname="永州市";break;case '11': $cname="郴州市";break;case '12': $cname="怀化市";break;
-			case '13': $cname="湘西州";break;case '14': $cname="张家界";break;
-		}
+    	$feel=new MoodModel($c,$y,$m,'',false);$feel->getMonthData();
+    	$cname = getCityDepAnumber($c);
 		$temp[0]=$feel->monthList;
 		$temp[1]=$cname." ".$y." 年 ".$m." 月 七种情感变化趋势";
 		$temp[2]=$feel->monthData["happy"];
@@ -273,7 +268,7 @@ class IndexController extends Controller {
 		$o	=	I("POST.o");
 		if(empty($c)||empty($o)){$this->error("页面错误！",U("Home/Index/index"),2);}
 
-		$feel=new FeelModel($c);
+		$feel=new MoodModel($c);
 		$feel->getAllData($o);
 		$temp=array($feel->allData,$feel->allList);
 		{

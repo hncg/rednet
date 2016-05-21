@@ -44,7 +44,7 @@ class ForecastModel extends Model{
 			$temp=M("forecast")->field("cps")->where(array(
 				"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();
-			$feel=M("feel");
+			$feel=M("mood");
 			$fect=$feel->field("cps")->where(array(
 				"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();

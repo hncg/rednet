@@ -154,20 +154,20 @@ function showLineAllT(){
 	var c=$("#all_city").val();
 	var cname;
 	switch(c){
-		case '1' : cname="长沙市";break;
+		case '3' : cname="长沙市";break;
 		case '2' : cname="株洲市";break;
-		case '3' : cname="湘潭市";break;
-		case '4' : cname="衡阳市";break;
-		case '5' : cname="岳阳市";break;
-		case '6' : cname="益阳市";break;
-		case '7' : cname="常德市";break;
-		case '8' : cname="邵阳市";break;
-		case '9' : cname="娄底市";break;
-		case '10': cname="永州市";break;
+		case '7' : cname="湘潭市";break;
+		case '5' : cname="衡阳市";break;
+		case '10' : cname="岳阳市";break;
+		case '4' : cname="益阳市";break;
+		case '9' : cname="常德市";break;
+		case '12' : cname="邵阳市";break;
+		case '13' : cname="娄底市";break;
+		case '8': cname="永州市";break;
 		case '11': cname="郴州市";break;
-		case '12': cname="怀化市";break;
-		case '13': cname="湘西州";break;
-		case '14': cname="张家界";break;
+		case '6': cname="怀化市";break;
+		case '14': cname="湘西州";break;
+		case '1': cname="张家界";break;
 		default  : cname="xxx";  break;
 	};
 	switch(o){

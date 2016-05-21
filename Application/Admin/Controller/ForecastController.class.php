@@ -2,16 +2,17 @@
 namespace Admin\Controller;
 
 use Think\Controller;
-use Home\Model\FeelModel;
+use Home\Model\MoodModel;
 use Home\Model\DateNow;
 use Admin\Model\ForecastModel;
 class ForecastController extends Controller{
 
 	private $t=0.6;
 	public $foredata;
-	public $n=31;				//默认显示预测接下来n天的
+	public $n=650;				//默认显示预测接下来n天的
 	public $foredays=30;		//向前取foredays天的数据
 	private $fm=465;				//权重分母
+	private $cityNum = 14;		//城市数目
 	public function fore(){
 
 		if(!check_admin())die();
@@ -31,7 +32,6 @@ class ForecastController extends Controller{
 	*
 	* ***/
 	public function lookfore(){
-		if(!$this->check_login())die();
 		if(UpdateOrNotFore()){
 			$this->startForecastN();;
 		}
@@ -78,43 +78,46 @@ class ForecastController extends Controller{
 	 * 获取数据库最新数据日期  预测将来n天
 	*/
 	public function getLatestDate(){
-		return M("feel")->field("year,month,day")->order("year DESC,month DESC,day DESC")->find();
-		//dump(M("feel")->field("year,month,day")->order("year DESC,month DESC,day DESC")->find());
+		return M("mood")->field("year,month,day")->order("year DESC,month DESC,day DESC")->find();
+		//dump(M("mood")->field("year,month,day")->order("year DESC,month DESC,day DESC")->find());
 	}
 	/*
 	 * 预测将来n天的情感
 	 */
 	public function testForecast(){
 
-		$date=array(2015,4,21);
+		$date=array(2014,7,15);
 		$txp=$date;
 		set_time_limit(0);			//防止超时
+
 		$format=3600*24+strtotime($date[0]."-".$date[1]."-".$date[2]);
-		for($c=1;$c<15;$c++){
+		//for($c=1;$c<=$this->cityNum;$c++){
+		for($c=7;$c<=9;$c++){
 			$fm=$format;
 			for($j=0;$j<$this->n;$j++,$fm+=3600*24){
 				$date=explode("-",date("Y-m-d",$fm));
 				$y=(int)$date[0];$m=(int)$date[1];$d=(int)$date[2];
 				$synthezise=$this->GetForecast($fm, $c);
-				$temp=M('forecast')->where(array(
-						'year'=>$y,'month'=>$m,'day'=>$d
-				))->find();
+
+				// $temp=M('forecast')->where(array(
+				// 		'year'=>$y,'month'=>$m,'day'=>$d
+				// ))->find();
+
 			}
-		}
-		dump($txp);
+		}echo $c."</br></br>";
 	}
 	public function startForecastN(){
 	   	$date = $this->getLatestDate();
 	   	$format=3600*24+strtotime($date["year"]."-".$date["month"]."-".$date["day"]);
-		for($c=1;$c<15;$c++){
+		for($c=1;$c<=$this->cityNum;$c++){
 			$fm=$format;
 			for($j=0;$j<$this->n;$j++,$fm+=3600*24){
 				$date=explode("-",date("Y-m-d",$fm));
 				$y=(int)$date[0];$m=(int)$date[1];$d=(int)$date[2];
 				$synthezise=$this->GetForecast($fm, $c);
-				$temp=M('forecast')->where(array(
-					'year'=>$y,'month'=>$m,'day'=>$d
-				))->find();
+				// $temp=M('forecast')->where(array(
+				// 	'year'=>$y,'month'=>$m,'day'=>$d
+				// ))->find();
 			}
 		}
 		UpdateOrNotForeX();
@@ -136,6 +139,7 @@ class ForecastController extends Controller{
 			$flag=1;
 		}
 		$w=$this->getM($format,$c);$k=$this->getK($format,$c);
+
 		$t=$this->t;
 		$synthesize=$t*$w+(1-$t)*$k;
 
@@ -150,7 +154,7 @@ class ForecastController extends Controller{
 		$y=(int)$date[0];$m=(int)$date[1];$d=(int)$date[2];
 		$w=0;$num=0;
 		for($i=2005;$i<$y;$i++){
-			$feel=new FeelModel();
+			$feel=new MoodModel();
 			$condition=array(
 				'year'=>$i,
 				'month'=>$m,
@@ -158,16 +162,16 @@ class ForecastController extends Controller{
 				'city_id'=>$c
 			);
 			$data=$feel->where($condition)->find();
-			if($data){$num++;$w+=$data["cps"];}
-			//dump($data);dump($feel->getLastSql());
-
+			if($data){
+				$num++;$w+=$data["cps"];
+			}
 		}
 		if($num){$w/=$num;}
 		return $w;
 	}
 	private function getK($format,$c){//时间戳       城市
 		$fm=$this->fm;
-		$feel=new FeelModel();
+		$feel=new MoodModel();
 		for($i=0;$i<$this->foredays;$i++){
 			$k=0;
 			$date=explode("-",date("Y-m-d",$format-$i*24*3600));
@@ -211,9 +215,5 @@ class ForecastController extends Controller{
 
 
 }
-/*
- *  var_dump(strtotime("2015-01-22"));
-	var_dump(time());
-	die();
- */
+
 ?>

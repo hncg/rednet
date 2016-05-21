@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-use Home\Model\FeelModel;
+use Home\Model\MoodModel;
 use Home\Model\ArticleWordModel;
 use Home\Model\DateNow;
 
@@ -42,13 +42,7 @@ class DownloadDataController extends Controller{
 		}
 	}
 	private function getcity($num){
-		switch ($num){
-			case 1 :return '长沙市';case 2 :return '株洲市';case 3 :return '湘潭市';
-			case 4 :return '衡阳市';case 5 :return '岳阳市';case 6 :return '益阳市';
-			case 7 :return '常德市';case 8 :return '邵阳市';case 9 :return '娄底市';
-			case 10:return '永州市';case 11:return '郴州市';case 12:return '怀化市';
-			case 13:return '湘西州';case 14:return '张家界';
-		}
+		return getCityDepAnumber($num);
 	}
 	public function recordInf($y,$m,$d){
 
@@ -63,7 +57,7 @@ class DownloadDataController extends Controller{
 	private function writeData($fileName,$tempName,$fp){
 
 		$date	=	new DateNow();
-		$feel	=	new FeelModel();
+		$feel	=	new MoodModel();
 		$feel->startIndex();
 		$articleWord	=	new ArticleWordModel();
 		$articleWord->startIndex();
@@ -79,7 +73,7 @@ class DownloadDataController extends Controller{
 		fputcsv($fp, $temp);
 		for($i=1;$i<15;$i++){		/* 14个城市 */
 			$sql="select *from(select *from mood where city_id=".$i." order by year desc,month desc,day desc limit 0,7)as x order by x.year asc,x.month asc,x.day asc";
-			$data=M('feel')->query($sql);
+			$data=M("mood")->query($sql);
 			for($j=0;$j<7;$j++){					/* 最近一周共7天 */
 				if(empty($data[$j]))break;
 				$y=$data[$j]['year'];
@@ -108,7 +102,7 @@ class DownloadDataController extends Controller{
 		fputcsv($fp, array('折线图数据'));
 		fputcsv($fp, $temp);
 		$sql="select *from (select * from mood where city_id=1 ORDER BY year DESC,month DESC,day DESC limit 0,31) AS X ORDER BY X.year ASC,X.month ASC,X.day ASC";
-		$data=M('feel')->query($sql);
+		$data=M("mood")->query($sql);
 		for($j=0;$j<31;$j++){				/**		最近31天数据		**/
 			if(empty($data[$j]))break;
 			$y=$data[$j]['year'];
@@ -160,7 +154,7 @@ class DownloadDataController extends Controller{
 
 		/******		当日详情		********/
 		$sql="select *from mood where city_id=1 and year=".$date->year." and month=".$date->month." and day=".$date->day;
-		$data=M('feel')->query($sql);
+		$data=M("mood")->query($sql);
 
 		fputcsv($fp, $temp);
 		$y=$data[0]['year'];

@@ -41,8 +41,9 @@ class ArticleWordModel extends Model{
 
 	public function getArticle(){
 		//$sql="select * from(select *from max_article where city_id=15 group by title,year,month,day,reply_number order by year desc,month desc,day desc limit 0,".($this->articleNum*2).")as x  order by x.reply_number desc limit 0,".$this->articleNum;
-		$sql="select * from  article where time_at > '" . date("Y-m-d", time() - 3600 * 24 *7) ."'order by reply_number desc limit 0,10";
+		$sql="select * from  article where time_at > '" . date("Y-m-d", time() - 3600 * 24 *21) ."'order by reply_number desc limit 0,10";
 		$this->article15=$this->query($sql);
+		//echo $sql;
 		$time = $this->year."-".$this->month."-".$this->day;
 		$timeNext = date("Y-m-d", strtotime($time) + 24 * 3600);
 		$sql="select * from  article where city_id=" . $this->city. " and time_at between '" . $time . "' and '" . $timeNext . "' order by read_number desc limit 0,10";

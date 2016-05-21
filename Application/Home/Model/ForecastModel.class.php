@@ -32,7 +32,7 @@ class ForecastModel extends Model{
 			$temp=M("forecast")->field("cps")->where(array(
 					"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();
-			$feel=M("feel");
+			$feel=M("mood");
 			$fect=$feel->field("cps")->where(array(
 					"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$i+1
 			))->find();
@@ -42,6 +42,7 @@ class ForecastModel extends Model{
 		}
 	}
 	private function getMonthData2(){
+		var_dump(1);
 		$format=time()-36*2400*30;
 		$c=$this->city;
 		for($i=0;$i<60;$i++,$format+=24*3600){
@@ -50,7 +51,7 @@ class ForecastModel extends Model{
 			$temp=M("forecast")->field("cps")->where(array(
 					"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$d
 			))->find();
-			$feel=M("feel");
+			$feel=M("mood");
 			$fect=$feel->field("cps")->where(array(
 					"city_id"=>$c,"year"=>$y,"month"=>$m,"day"=>$d
 			))->find();//echo $c.".".$y.".".$m.".".$d."<br>";

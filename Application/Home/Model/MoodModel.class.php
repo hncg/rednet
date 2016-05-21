@@ -3,7 +3,7 @@ namespace Home\Model;
 
 use Think\Model;
 
-class FeelModel extends Model{
+class MoodModel extends Model{
 
 	public $city;                        //城市
 	public $year;                        //年份

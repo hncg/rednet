@@ -80,15 +80,25 @@ function getMonthDays($y,$m){
 	}
 	return $days;
 }
-function getCityDepAnumber($city){
-	switch($city){
-		case 1:$c="长沙市";break;case 2:$c="株洲市";break;case 3:$c="湘潭市";break;
-		case 4:$c="衡阳市";break;case 5:$c="岳阳市";break;case 6:$c="益阳市";break;
-		case 7:$c="常德市";break;case 8:$c="邵阳市";break;case 9:$c="娄底市";break;
-		case 10:$c="永州市";break;case 11:$c="郴州市";break;case 12:$c="怀化市";break;
-		case 13:$c="湘西州";break;case 14:$c="张家界市";break;
-	}
-	return $c;
-}
+function getCityDepAnumber($num){
 
+	switch($num){
+		case 3 : $cname="长沙市";break;
+		case 2 : $cname="株洲市";break;
+		case 7 : $cname="湘潭市";break;
+		case 5 : $cname="衡阳市";break;
+		case 10 : $cname="岳阳市";break;
+		case 4 : $cname="益阳市";break;
+		case 9 : $cname="常德市";break;
+		case 12 : $cname="邵阳市";break;
+		case 13 : $cname="娄底市";break;
+		case 8: $cname="永州市";break;
+		case 11: $cname="郴州市";break;
+		case 6: $cname="怀化市";break;
+		case 14: $cname="湘西州";break;
+		case 1: $cname="张家界";break;
+		default  : $cname="xxx";  break;
+	}
+	return $cname;
+}
 

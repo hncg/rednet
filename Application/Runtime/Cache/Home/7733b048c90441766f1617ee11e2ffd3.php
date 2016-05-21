@@ -171,31 +171,32 @@
 <?php echo ($cym["city"]); ?> <?php echo ($cym["year"]); ?> 年 <?php echo ($cym["month"]); ?> 月 综合情感预测实况对比
 		</b></h4></div>
 		<div id="sel-c-y-m">
+
 				<select name="ci" class="ci" autocomplete="off">
-					<option value="1"  <?php if(($cym['ci']) == "1"): ?>selected="selected"<?php endif; ?> >长 沙 市</option>
-               	 	<option value="2"  <?php if(($cym['ci']) == "2"): ?>selected="selected"<?php endif; ?> >株 洲 市</option>
-                	<option value="3"  <?php if(($cym['ci']) == "3"): ?>selected="selected"<?php endif; ?> >湘 潭 市</option>
-               		<option value="4"  <?php if(($cym['ci']) == "4"): ?>selected="selected"<?php endif; ?> >衡 阳 市</option>
-               		<option value="5"  <?php if(($cym['ci']) == "5"): ?>selected="selected"<?php endif; ?> >岳 阳 市</option>
-               		<option value="6"  <?php if(($cym['ci']) == "6"): ?>selected="selected"<?php endif; ?> >益 阳 市</option>
-               		<option value="7"  <?php if(($cym['ci']) == "7"): ?>selected="selected"<?php endif; ?> >常 德 市</option>
-               		<option value="8"  <?php if(($cym['ci']) == "8"): ?>selected="selected"<?php endif; ?> >邵 阳 市</option>
-               		<option value="9"  <?php if(($cym['ci']) == "9"): ?>selected="selected"<?php endif; ?> >娄 底 市</option>
-               		<option value="10" <?php if(($cym['ci']) == "10"): ?>selected="selected"<?php endif; ?>>永 州 市</option>
-               		<option value="11" <?php if(($cym['ci']) == "11"): ?>selected="selected"<?php endif; ?>>郴 州 市</option>
-               		<option value="12" <?php if(($cym['ci']) == "12"): ?>selected="selected"<?php endif; ?>>怀 化 市</option>
-               		<option value="13" <?php if(($cym['ci']) == "13"): ?>selected="selected"<?php endif; ?>>湘 西 州</option>
-               		<option value="14" <?php if(($cym['ci']) == "14"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
+                    <option value="3" <?php if(($city) == "3"): ?>selected="selected"<?php endif; ?>>长 沙 市</option>
+                    <option value="2" <?php if(($city) == "2"): ?>selected="selected"<?php endif; ?>>株 洲 市</option>
+                    <option value="7" <?php if(($city) == "7"): ?>selected="selected"<?php endif; ?>>湘 潭 市</option>
+                    <option value="5" <?php if(($city) == "5"): ?>selected="selected"<?php endif; ?>>衡 阳 市</option>
+                    <option value="10" <?php if(($city) == "10"): ?>selected="selected"<?php endif; ?>>岳 阳 市</option>
+                    <option value="4" <?php if(($city) == "4"): ?>selected="selected"<?php endif; ?>>益 阳 市</option>
+                    <option value="9" <?php if(($city) == "9"): ?>selected="selected"<?php endif; ?>>常 德 市</option>
+                    <option value="12" <?php if(($city) == "12"): ?>selected="selected"<?php endif; ?>>邵 阳 市</option>
+                    <option value="13" <?php if(($city) == "13"): ?>selected="selected"<?php endif; ?>>娄 底 市</option>
+                    <option value="8" <?php if(($city) == "8"): ?>selected="selected"<?php endif; ?>>永 州 市</option>
+                    <option value="11" <?php if(($city) == "11"): ?>selected="selected"<?php endif; ?>>郴 州 市</option>
+                    <option value="6" <?php if(($city) == "6"): ?>selected="selected"<?php endif; ?>>怀 化 市</option>
+                    <option value="14" <?php if(($city) == "14"): ?>selected="selected"<?php endif; ?>>湘 西 州</option>
+                    <option value="1" <?php if(($city) == "1"): ?>selected="selected"<?php endif; ?>>张 家 界</option>
 				</select>
 				<select name="ye" class="ye">
-					<?php $__FOR_START_1820081047__=2012;$__FOR_END_1820081047__=$cym['nowyear']+1;for($temp=$__FOR_START_1820081047__;$temp < $__FOR_END_1820081047__;$temp+=1){ ?><option <?php if(($temp) == $cym['year']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>"><?php echo ($temp); ?>年</option><?php } ?>
+					<?php $__FOR_START_813415091__=2012;$__FOR_END_813415091__=$cym['nowyear']+1;for($temp=$__FOR_START_813415091__;$temp < $__FOR_END_813415091__;$temp+=1){ ?><option <?php if(($temp) == $cym['year']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>"><?php echo ($temp); ?>年</option><?php } ?>
 				</select>
 				<select name="mo" class="mo">
-        			<?php $__FOR_START_941262673__=1;$__FOR_END_941262673__=13;for($temp=$__FOR_START_941262673__;$temp < $__FOR_END_941262673__;$temp+=1){ ?><option <?php if(($temp) == $cym['month']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>" <?php if(($temp) == $dateNow->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>
+        			<?php $__FOR_START_1988728846__=1;$__FOR_END_1988728846__=13;for($temp=$__FOR_START_1988728846__;$temp < $__FOR_END_1988728846__;$temp+=1){ ?><option <?php if(($temp) == $cym['month']): ?>selected="selected"<?php endif; ?> value="<?php echo ($temp); ?>" <?php if(($temp) == $dateNow->month): ?>selected="selected"<?php endif; ?> ><?php if(($temp) < "10"): ?>0<?php endif; echo ($temp); ?> 月</option><?php } ?>
         		</select>
         		<button onclick="lookCompare()" style="margin-left:20px;">查看</button>
         		<button onclick="lookCompareFore()" style="margin-left:50px;">将来30天预测</button>
-	
+
 		</div>
     	<div id="line"></div>
     	<div id="blank-h"></div>
@@ -207,21 +208,21 @@
 	var length=xList.length;
 	{
 		xList[length]	   ="-";	xList[length+1]		=	"阈值";
-		yListFore[length]  ="-";	yListFore[length+1]	=	15;	
+		yListFore[length]  ="-";	yListFore[length+1]	=	15;
 		yListFect[length]  ="-";	yListFect[length+1]	=	-15;
-		
+
 	}
     </script>
     <script type="text/javascript">
-		
+
         // 路径配置
-		
+
         require.config({
-            paths:{ 
+            paths:{
                 'echarts' : '/Public/Js/echarts',
                 'echarts/chart/bar' : '/Public/Js/echarts'
             }
-        });		
+        });
 		option = {
 			title : {
 				text: '',
@@ -311,7 +312,7 @@
 					myChart_line_main.setOption(option);
 				}
 		);
-			
+
     </script>
 					</div>
 				</div>
