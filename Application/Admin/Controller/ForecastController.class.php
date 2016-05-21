@@ -92,7 +92,7 @@ class ForecastController extends Controller{
 
 		$format=3600*24+strtotime($date[0]."-".$date[1]."-".$date[2]);
 		//for($c=1;$c<=$this->cityNum;$c++){
-		for($c=7;$c<=9;$c++){
+		for($c=1;$c<=$this->cityNum;$c++){
 			$fm=$format;
 			for($j=0;$j<$this->n;$j++,$fm+=3600*24){
 				$date=explode("-",date("Y-m-d",$fm));
