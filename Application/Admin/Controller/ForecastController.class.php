@@ -85,14 +85,13 @@ class ForecastController extends Controller{
 	 * 预测将来n天的情感
 	 */
 	public function testForecast(){
-
 		$date=array(2014,7,15);
 		$txp=$date;
 		set_time_limit(0);			//防止超时
 
 		$format=3600*24+strtotime($date[0]."-".$date[1]."-".$date[2]);
 		//for($c=1;$c<=$this->cityNum;$c++){
-		for($c=1;$c<=$this->cityNum;$c++){
+		for($c=2;$c<=2;$c++){
 			$fm=$format;
 			for($j=0;$j<$this->n;$j++,$fm+=3600*24){
 				$date=explode("-",date("Y-m-d",$fm));
@@ -104,7 +103,8 @@ class ForecastController extends Controller{
 				// ))->find();
 
 			}
-		}echo $c."</br></br>";
+			return 1;
+		};
 	}
 	public function startForecastN(){
 	   	$date = $this->getLatestDate();
@@ -144,8 +144,12 @@ class ForecastController extends Controller{
 		$synthesize=$t*$w+(1-$t)*$k;
 
 		$data=array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c,"cps"=>$synthesize);
-		if(!$flag)M("forecast")->data($data)->add();
-		else M("forecast")->where(array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c))->save(array("cps"=>$synthesize));
+		if(!$flag) {
+			M("forecast")->data($data)->add();
+		}
+		else {
+			M("forecast")->where(array('year'=>$y,'month'=>$m,'day'=>$d,'city_id'=>$c))->save(array("cps"=>$synthesize));
+		}
 		return $synthesize;
 	}
 	private function getM($formate,$c){//  月   日  城市

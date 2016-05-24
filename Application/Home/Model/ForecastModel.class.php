@@ -42,7 +42,6 @@ class ForecastModel extends Model{
 		}
 	}
 	private function getMonthData2(){
-		var_dump(1);
 		$format=time()-36*2400*30;
 		$c=$this->city;
 		for($i=0;$i<60;$i++,$format+=24*3600){
